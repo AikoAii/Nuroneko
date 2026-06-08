@@ -1,0 +1,28 @@
+{
+  "positionX": "right",
+  "positionY": "top",
+
+  "layer": "overlay",
+  "control-center-layer": "overlay",
+
+  "control-center-exclusive-zone": false,
+
+  "notification-window-width": 360,
+  "control-center-width": 380,
+
+  "notification-icon-size": 48,
+
+  "timeout": 5,
+  "timeout-low": 3,
+  "timeout-critical": 0,
+
+  "fit-to-screen": true,
+
+  "control-center-margin-top": 12,
+  "control-center-margin-right": 12,
+  "control-center-margin-bottom": 12,
+
+  "widgets": [
+    "notifications"
+  ]
+}

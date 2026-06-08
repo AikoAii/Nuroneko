@@ -1,0 +1,4 @@
+[[manager.prepend_keymap]]
+on = ["d", "d"]
+run = "shell 'trash-put \"$@\"'"
+desc = "Move to trash"

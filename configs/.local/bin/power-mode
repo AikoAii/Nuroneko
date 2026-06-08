@@ -1,0 +1,74 @@
+#!/bin/bash
+
+MODE=$1
+
+if [ "$MODE" = "on" ]; then
+  echo "⚡ ULTRA POWER SAVE MODE"
+
+  # CPU governor
+  for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+    echo powersave | sudo tee $file >/dev/null
+  done
+
+  # Limit CPU freq
+  for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_max_freq; do
+    echo 1200000 | sudo tee $file >/dev/null
+  done
+
+  # Kernel tuning
+  echo 5 | sudo tee /proc/sys/vm/laptop_mode
+  echo 1500 | sudo tee /proc/sys/vm/dirty_writeback_centisecs
+
+  # Hyprland optim
+  hyprctl keyword animations:enabled 0
+  hyprctl keyword decoration:blur:enabled 0
+  hyprctl keyword decoration:shadow:enabled 0
+  hyprctl keyword general:gaps_in 0
+  hyprctl keyword general:gaps_out 0
+
+  # Display
+  brightnessctl set 30%
+  hyprctl keyword monitor "eDP-1,1920x1080@50,0x0,1"
+
+  # Network tetap ON
+  nmcli radio wifi on
+  rfkill unblock wifi
+  rfkill unblock bluetooth
+
+  # Kill apps berat
+  killall waybar 2>/dev/null
+  killall firefox 2>/dev/null
+  killall discord 2>/dev/null
+
+  # dinit services
+  sudo dinitctl stop cupsd 2>/dev/null
+  sudo dinitctl stop crond 2>/dev/null
+
+  echo "✅ Power Save ON"
+
+elif [ "$MODE" = "off" ]; then
+  echo "🚀 NORMAL MODE"
+
+  # CPU governor
+  for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+    echo performance | sudo tee $file >/dev/null
+  done
+
+  # Restore max freq
+  MAX=$(cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq)
+  for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_max_freq; do
+    echo $MAX | sudo tee $file >/dev/null
+  done
+
+  # Hyprland normal
+  hyprctl keyword animations:enabled 1
+
+  brightnessctl set 80%
+
+  waybar &
+
+  echo "✅ Power Save OFF"
+
+else
+  echo "Usage: power-mode on | off"
+fi
