@@ -1,0 +1,18 @@
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# Temporary
+tmp/
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/

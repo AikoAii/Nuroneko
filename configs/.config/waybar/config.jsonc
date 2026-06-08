@@ -1,0 +1,275 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height": 34,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+
+    // Layout Configurations
+    "modules-left": [
+        "tray",
+        "hyprland/workspaces",
+        "custom/media",
+        "custom/cava"
+    ],
+    "modules-center": ["group/system-info"],
+    "modules-right": [
+        "group/system-levels",
+        "group/time",
+        "group/control-panel"
+    ],
+
+    // Group: Hardware Monitor
+    "group/system-info": {
+        "orientation": "horizontal",
+        "modules": ["custom/cpu", "custom/ram", "custom/temp"]
+    },
+
+    // Group: Hardware Levels
+    "group/system-levels": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/brightness",
+            "custom/battery",
+            "custom/volume",
+            "custom/microphone"
+        ]
+    },
+
+    // Group: Clock & Inhibitor
+    "group/time": {
+        "orientation": "horizontal",
+        "modules": ["idle_inhibitor", "clock"]
+    },
+
+    // Group: Keyboard Status (Disabled by default)
+    "group/keyboard": {
+        "orientation": "horizontal",
+        "modules": ["hyprland/language", "custom/capslock"]
+    },
+
+    // Group: Quick Settings Panel
+    "group/control-panel": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/system-update",
+            "custom/do-not-disturb",
+            "custom/bluetooth",
+            "custom/networkmanager",
+            "custom/power"
+        ]
+    },
+
+    // Module: Workspaces
+    "hyprland/workspaces": {
+        "rotate": 0,
+        "all-outputs": true,
+        "active-only": false,
+        "disable-scroll": false,
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "on-click": "activate",
+        "show-special": true,
+        "sort-by-number": true,
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "empty": "",
+            "default": "",
+            "special": "󱗼"
+        },
+        "persistent-workspaces": {
+            "*": 3
+        }
+    },
+
+    // Module: Media Player
+    "custom/media": {
+        "format": "{}",
+        "exec": "media.sh",
+        "return-type": "json",
+        "restart-interval": 5,
+        "rotate": 0,
+        "escape": true,
+        "exec-on-event": false,
+        "min-length": 0,
+        "max-length": 25,
+        "align": 0.0,
+        "on-click": "playerctl play-pause",
+        "on-click-middle": "",
+        "on-click-right": "hyprctl dispatch exec '[float; size 800 600; move 100%-820 40]' kitty -e ncmpcpp",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "tooltip": true
+    },
+
+    // Modules: Hardware Info
+    "custom/cpu": {
+        "format": "{}",
+        "interval": 3,
+        "exec": "sysinfo.sh cpu",
+        "return-type": "json",
+        "rotate": 0,
+        "min-length": 5,
+        "align": 0.5,
+        "tooltip": true
+    },
+    "custom/ram": {
+        "format": "{}",
+        "interval": 3,
+        "exec": "sysinfo.sh ram",
+        "return-type": "json",
+        "rotate": 0,
+        "min-length": 5,
+        "align": 0.5,
+        "tooltip": true
+    },
+    "custom/temp": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "sysinfo.sh temp",
+        "return-type": "json",
+        "rotate": 0,
+        "min-length": 5,
+        "align": 0.5,
+        "tooltip": true
+    },
+
+    // Module: Cava Audio Visualizer
+    "custom/cava": {
+        "format": "{}",
+        "exec": "cavbar.sh",
+        "return-type": "json",
+        "rotate": 0,
+        "exec-on-event": false,
+        "on-click": "",
+        "on-click-middle": "",
+        "on-click-right": "",
+        "on-scroll-up": "",
+        "on-scroll-down": "",
+        "tooltip": false
+    },
+
+    // Module: Idle Inhibitor
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "rotate": 0,
+        "format-icons": {
+            "activated": "󰥔 ",
+            "deactivated": " "
+        }
+    },
+
+    // Module: Clock & Calendar
+    "clock": {
+        "format": "{:%H:%M %p}",
+        "rotate": 0,
+        "format-alt": "{:%R | 󰃭 %d·%m·%y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#cba6f7'><b>{}</b></span>",
+                "weekdays": "<span color='#a6adc8'><b>{}</b></span>",
+                "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    // Modules: Hardware Control Levels
+    "custom/battery": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "battery.sh",
+        "return-type": "json",
+        "rotate": 0,
+        "tooltip": true
+    },
+    "custom/brightness": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "brightness.sh",
+        "return-type": "json",
+        "rotate": 0,
+        "on-scroll-up": "bash -c 'brightnessctl set 5%+ && swayosd-client --brightness raise'",
+        "on-scroll-down": "bash -c 'brightnessctl set 5%- && swayosd-client --brightness lower'",
+        "tooltip": true
+    },
+    "custom/volume": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "volume.sh",
+        "return-type": "json",
+        "rotate": 0,
+        "on-click": "bash -c 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'",
+        "on-scroll-up": "bash -c 'wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+ && swayosd-client --output-volume raise'",
+        "on-scroll-down": "bash -c 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && swayosd-client --output-volume lower'",
+        "scroll-step": 5,
+        "tooltip": true
+    },
+    "custom/microphone": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "mic.sh",
+        "return-type": "json",
+        "rotate": 0,
+        "on-click": "bash -c 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && swayosd-client --input-volume mute-toggle'",
+        "on-scroll-up": "bash -c 'wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%+ && swayosd-client --input-volume raise'",
+        "on-scroll-down": "bash -c 'wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%- && swayosd-client --input-volume lower'",
+        "scroll-step": 5,
+        "tooltip": true
+    },
+
+    // Modules: Keyboard Inputs
+    "hyprland/language": {
+        "format": "{short}",
+        "rotate": 0,
+        "tooltip": false
+    },
+
+    // Modules: Control Panel Toggles
+    "custom/system-update": {
+        "interval": 5,
+        "exec": "updates.sh",
+        "return-type": "json",
+        "on-click": "kitty -e bash -c 'sudo pacman -Syu && flatpak update -y'",
+        "tooltip": true
+    },
+    "custom/do-not-disturb": {
+        "interval": 1,
+        "exec": "dnd.sh",
+        "return-type": "json",
+        "on-click": "swaync-client -d",
+        "tooltip": true
+    },
+    "custom/bluetooth": {
+        "format": "󰂯",
+        "on-click": "hyprctl dispatch exec '[float; size 600 500; move 100%-610 40] blueman-manager'",
+        "tooltip": true
+    },
+    "custom/networkmanager": {
+        "interval": 1,
+        "exec": "network.sh",
+        "return-type": "json",
+        "on-click": "wifi-popup.sh",
+        "tooltip": true
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "hyprctl dispatch exec 'wlogout -b 2'",
+        "tooltip": true
+    }
+}

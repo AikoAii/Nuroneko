@@ -1,0 +1,9 @@
+hyprshade
+
+swayosd
+
+rofimoji
+
+pokemon-colorscripts-git
+zen-browser-bin
+

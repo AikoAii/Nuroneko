@@ -1,0 +1,110 @@
+󰆍 SYSTEM / APPS
+SUPER  + ENTER          →  Terminal
+SUPER  + D              →  Launcher
+SUPER  + Z              →  Browser
+SUPER  + E              →  Files
+SUPER  + C              →  Editor
+SUPER  + I              →  Notes
+SUPER  + A              →  Audio Control
+CTRL   + SHIFT + ESC    →  System Monitor
+
+SUPER  + W              →  Wallpaper
+SUPER  + ⇧ + W          →  Random Wallpaper
+SUPER  + CTRL + W       →  Restore Wallpaper
+
+
+󰘳 WINDOW
+SUPER  + Q              →  Kill Window
+SUPER  + SPACE          →  Toggle Float
+ALT    + ENTER          →  Fullscreen
+
+SUPER  + J              →  Toggle Split
+SUPER  + P              →  Toggle Pseudo
+SUPER  + G              →  Toggle Group
+
+
+󰘶 WORKSPACE
+SUPER  + [1-0]          →  Switch Workspace
+SUPER  + ⇧ + [1-0]      →  Move Window
+
+SUPER  + TAB            →  Previous Workspace
+SUPER  + U              →  Focus Urgent
+
+
+󰌌 SCRATCHPAD
+SUPER  + S              →  Toggle Scratchpad
+SUPER  + ⇧ + S          →  Send to Scratchpad
+
+SUPER  + T              →  Scratchpad Terminal
+SUPER  + M              →  Scratchpad Music
+
+
+󰖨 SCREENSHOT
+Print                   →  Full Screenshot
+⇧ + Print               →  Region Screenshot
+
+CTRL + Print            →  Copy Screenshot
+CTRL + ⇧ + Print        →  Save + Copy
+
+SUPER + Print           →  Smart Screenshot
+SUPER + ⇧ + Print       →  Smart Save + Copy
+SUPER + CTRL + Print    →  Smart Copy
+
+SUPER + O               →  OCR → Copy Text
+
+
+󰣇 CLIPBOARD / UTILITIES
+SUPER  + V              →  Clipboard History
+SUPER  + ⇧ + V          →  Clear Clipboard
+
+SUPER  + .              →  Emoji Picker
+SUPER  + /              →  Keybind Cheat Sheet
+
+SUPER  + K              →  Color Picker
+SUPER  + ⇧ + F          →  File Search
+
+
+󰐥 SESSION / POWER
+SUPER  + ⇧ + L          →  Lock
+
+SUPER  + ESC            →  Power Menu
+SUPER  + CTRL + DEL     →  Wlogout
+
+SUPER  + CTRL + R       →  Reload Hyprland
+
+SUPER  + CTRL + ⇧ + Q   →  Exit Session
+SUPER  + CTRL + ⇧ + S   →  Shutdown
+SUPER  + CTRL + ⇧ + R   →  Reboot
+SUPER  + CTRL + ⇧ + P   →  Suspend
+
+
+󰘵 NOTIFICATIONS
+SUPER  + N              →  Toggle Notifications
+SUPER  + ⇧ + N          →  Notification Center
+SUPER  + CTRL + N       →  Clear Notifications
+
+
+󰖳 FOCUS
+SUPER  + ← → ↑ ↓        →  Move Focus
+
+
+󰆧 MOUSE
+SUPER  + Scroll         →  Switch Workspace
+
+SUPER  + Left Click     →  Move Window
+SUPER  + Right Click    →  Resize Window
+
+
+󰕾 AUDIO
+Volume Up / Down        →  Adjust Volume
+Mute                    →  Toggle Audio
+Mic Mute                →  Toggle Mic
+
+
+󰃠 BRIGHTNESS
+Brightness Up / Down    →  Adjust Brightness
+
+
+󰎆 MEDIA
+Next / Prev             →  Next / Previous Track
+Play / Pause            →  Toggle Playback

@@ -1,0 +1,109 @@
+// Config //
+configuration {
+    modi:                        "drun";
+    show-icons:                  false; /* Dinonaktifkan karena clipboard murni berisi teks biasa */
+    font:                        "JetBrainsMono Nerd Font 10";
+} 
+
+@theme "theme"
+
+// Main Window //
+window {
+    height:                      30em;    /* Tinggi yang pas untuk melihat banyak riwayat sekaligus */
+    width:                       55em;    /* Dibuat lebar agar teks panjang yang kamu copy tidak terpotong */
+    transparency:                "real";
+    fullscreen:                  false;
+    enabled:                     true;
+    cursor:                      "default";
+    spacing:                     0em;
+    padding:                     0em;
+    border:                      2px solid;
+    border-radius:               12px;
+    border-color:                @main-br;
+    background-color:            @main-bg;
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     0.8em;
+    padding:                     1.2em;
+    orientation:                 vertical;
+    children:                    [ "inputbar", "listview" ];
+    background-color:            transparent;
+}
+
+// Input Bar (Kolom Pencarian Riwayat) //
+inputbar {
+    enabled:                     true;
+    children:                    [ prompt, entry ];
+    spacing:                     0em;
+    background-color:            transparent;
+}
+
+prompt {
+    enabled:                     true;
+    padding:                     0.5em 1em;
+    text-align:                  center;
+    cursor:                      default;
+    text-color:                  @select-fg;
+    border:                      2px solid;
+    border-radius:               8px 0px 0px 8px;
+    border-color:                @main-br;
+    background-color:            @main-br;
+}
+
+entry {
+    enabled:                     true;
+    padding:                     0.5em 1em;
+    cursor:                      text;
+    background-color:            transparent;
+    text-color:                  @main-fg;
+    border:                      2px solid;
+    border-radius:               0px 8px 8px 0px;
+    border-color:                @main-br;
+    background-color:            @main-bg;
+    placeholder:                 "Cari teks yang pernah disalin...";
+    placeholder-color:           @main-fg;
+}
+
+// List View //
+listview {
+    enabled:                     true;
+    spacing:                     6px;
+    padding:                     0.2em 0em 0em 0em;
+    columns:                     1;
+    lines:                       8;       /* Menampilkan 8 daftar teks clipboard sekaligus */
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    fixed-height:                true;
+    fixed-columns:               true;
+    cursor:                      "default";
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+
+// Elements (Baris Teks Salinan) //
+element {
+    enabled:                     true;
+    spacing:                     1em;
+    padding:                     0.6em 1em; /* Padding vertikal sedikit lebih lega agar nyaman dibaca */
+    cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  @main-fg;
+    border-radius:               8px;
+}
+
+element selected.normal {
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
+}
+
+element-text {
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}

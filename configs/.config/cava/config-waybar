@@ -1,0 +1,25 @@
+[general]
+framerate = 60
+bars = 20
+
+[input]
+method = pulse
+source = auto
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 7
+
+[smoothing]
+noise_reduction = 0.65
+
+[color]
+gradient = 1
+
+gradient_color_1 = '#94e2d5' # Teal (Base bawah saat suara pelan)
+gradient_color_2 = '#89b4fa' # Blue
+gradient_color_3 = '#b4befe' # Lavender
+gradient_color_4 = '#cba6f7' # Mauve (Puncak atas saat bass/suara tinggi)
+

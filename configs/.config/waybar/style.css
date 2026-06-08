@@ -1,0 +1,216 @@
+@define-color bar-bg      rgba(17, 17, 27, 0);
+@define-color main-bg     rgba(30, 30, 46, 0.80);
+@define-color main-fg     #cdd6f4;
+@define-color subtext     #a6adc8;
+@define-color accent-bg   #cba6f7;
+@define-color accent-fg   #11111b;
+
+/* Catppuccin Mocha Authentic Hex Palette */
+@define-color blue        #74c7ec; /* Sapphire */
+@define-color green       #a6e3a1; /* Green */
+@define-color teal        #94e2d5; /* Teal */
+@define-color warning     #f9e2af; /* Yellow */
+@define-color critical    #f38ba8; /* Red */
+@define-color lavender    #b4befe; /* Lavender */
+
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-weight: bold;
+  font-size: 12px;
+  min-height: 10px;
+}
+
+window#waybar {
+  background: @bar-bg;
+  border-radius: 15px;
+}
+
+tooltip {
+  background: rgba(24, 24, 37, 0.95);
+  color: @main-fg;
+  border: 1px solid rgba(203, 166, 247, 0.2);
+  border-radius: 10px;
+  padding: 8px;
+}
+
+tooltip #calendar {
+  padding: 4px;
+}
+
+tooltip #calendar .month {
+  color: @accent-bg;
+  font-size: 13px;
+}
+
+tooltip #calendar .header {
+  color: @subtext;
+}
+
+tooltip #calendar .today {
+  color: @critical;
+  text-decoration: underline;
+}
+
+#workspaces,
+#custom-media,
+#tray,
+#system-info,
+#system-levels,
+#time,
+#keyboard,
+#control-panel,
+#custom-cava {
+  background: @main-bg;
+  color: @main-fg;
+  border-radius: 22px;
+  margin: 6px 4px;
+  padding: 0 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#workspaces { margin-left: 12px; }
+#control-panel { margin-right: 12px; }
+
+#workspaces:hover,
+#custom-media:hover,
+#tray:hover,
+#system-info:hover,
+#system-levels:hover,
+#time:hover,
+#keyboard:hover,
+#control-panel:hover,
+#custom-cava:hover {
+  background: rgba(45, 45, 70, 0.90);
+  box-shadow: 0 0 12px rgba(203, 166, 247, 0.25);
+}
+
+#workspaces button {
+  box-shadow: none;
+  text-shadow: none;
+  color: @subtext;
+  border-radius: 20px;
+  padding: 0px 4px;
+  margin: 4px 1px;
+  transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+  background: @accent-bg;
+  color: @accent-fg;
+  padding: 0px 7px;
+  margin: 4px 2px;
+}
+
+#workspaces button:hover {
+  background: rgba(203, 166, 247, 0.2);
+  color: @main-fg;
+}
+
+#custom-cpu, #custom-ram, #custom-temp, #custom-brightness, 
+#custom-battery, #custom-volume, #custom-microphone, #custom-system-update, 
+#custom-do-not-disturb, #custom-networkmanager, #custom-capslock, 
+#hyprland-language, #idle_inhibitor, #clock, #custom-bluetooth, #custom-power {
+  margin: 0 6px;
+  padding: 0 1px;
+}
+
+#time #idle_inhibitor { color: @lavender; margin-right: 4px; }
+#time #clock { color: @main-fg; }
+
+#keyboard #hyprland-language { color: @lavender; }
+#keyboard #custom-capslock { color: @warning; }
+
+#tray { margin-left: 10px; }
+#tray > widget, #tray > .passive, #tray > .active, #tray > .needs-attention { margin: 0 6px; }
+#tray image { padding: 0 2px; }
+
+#custom-media { color: @accent-bg; }
+#custom-cava {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+#custom-cava.hidden {
+  background: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
+  min-width: 0px;
+  opacity: 0;
+}
+
+/* HARDWARE MODULE COLORS */
+#custom-cpu,
+#custom-networkmanager.connected,
+#custom-bluetooth.connected {
+  color: @blue;
+}
+
+#custom-ram,
+#custom-battery {
+  color: @green;
+}
+
+#custom-temp,
+#custom-power {
+  color: @critical;
+}
+
+/* PERIPHERAL & AUDIO COLORS */
+#custom-brightness {
+  color: @warning;
+}
+
+#custom-volume {
+  color: @lavender;
+}
+
+#custom-microphone,
+#custom-bluetooth {
+  color: @teal;
+}
+
+/* STATE DYNAMIC DEFINITIONS */
+#custom-media.muted,
+#custom-bluetooth.off {
+  color: #6c7086;
+}
+
+#custom-volume.muted,
+#custom-microphone.muted,
+#custom-do-not-disturb.enabled,
+#custom-battery.critical,
+#custom-networkmanager.critical,
+#custom-networkmanager.offline {
+  color: @critical;
+}
+
+#custom-volume.warning,
+#custom-battery.warning,
+#custom-system-update.warning,
+#custom-system-update {
+  color: @warning;
+}
+
+#custom-do-not-disturb.disabled {
+  color: @green;
+}
+
+#custom-battery.charging {
+  color: @green;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+#custom-battery.critical {
+  animation: blink 1.5s ease infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.4; }
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 1px rgba(166, 227, 161, 0.2); }
+  50% { text-shadow: 0 0 8px rgba(166, 227, 161, 0.6); }
+  100% { text-shadow: 0 0 1px rgba(166, 227, 161, 0.2); }
+}

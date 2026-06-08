@@ -1,0 +1,83 @@
+* {
+    /* Warna asli tetap dipertahankan tanpa diubah */
+    main-bg:       #1e1e2eE6;
+    main-fg:       #cdd6f4;
+    main-br:       #89b4fa;
+    select-bg:     #313244CC;
+    select-fg:     #89b4fa;
+
+    background-color: transparent;
+}
+
+window {
+    transparency: "real";
+
+    /* Mengubah ukuran statis px menjadi em agar lebih ringkas dan proporsional */
+    width: 65em;
+    height: 34em;
+
+    border: 2px solid;
+    border-radius: 14px; /* Sedikit diperkecil agar serasi dengan sudut emoji picker */
+    border-color: @main-br;
+
+    background-color: @main-bg;
+}
+
+mainbox {
+    spacing: 1.5em; /* Memberi jarak antara pratinjau kiri dan list kanan */
+    padding: 1.5em;
+
+    /* Mengubah orientasi menjadi horizontal agar dummywall dan listview berdampingan rapi */
+    orientation: horizontal;
+    children: [ "dummywall", "listview" ];
+
+    background-color: transparent;
+}
+
+dummywall {
+    /* Membatasi lebar pratinjau wallpaper aktif agar tidak terlalu mendominasi */
+    width: 24em;
+
+    border-radius: 10px;
+
+    background-image: url("~/.local/share/wallpapers/current", height);
+    background-size: cover;
+}
+
+listview {
+    /* Mengubah grid menjadi 2 kolom dan 3 baris agar susunan thumbnail tegak vertikal */
+    columns: 2;
+    lines: 3;
+
+    spacing: 1em;
+
+    cycle: true;
+    dynamic: true;
+
+    scrollbar: false;
+
+    layout: vertical;
+    background-color: transparent;
+}
+
+element {
+    padding: 0.5em;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: @select-bg;
+    border: 1px solid; /* Memberi tepi tipis pada opsi yang dipilih */
+    border-color: @select-fg;
+}
+
+element-icon {
+    /* Menyesuaikan ukuran icon/thumbnail wallpaper agar pas dengan grid baru */
+    size: 7.5em;
+    border-radius: 8px;
+}
+
+element-text {
+    enabled: false;
+}

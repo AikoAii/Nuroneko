@@ -1,0 +1,124 @@
+configuration {
+    modi:                        "drun";
+    show-icons:                  true;
+    drun-display-format:         "{name}";
+    font:                        "JetBrainsMono NF Bold 11";
+}
+
+//----- Global Properties -----//
+
+@theme "theme"
+
+//----- Main Window -----//
+
+window {
+    enabled:                     true;
+    fullscreen:                  false;
+
+    width:                       80%;
+
+    transparency:                "real";
+
+    cursor:                      "default";
+
+    spacing:                     0px;
+    padding:                     0px;
+
+    border:                      2px;
+    border-radius:               14px;
+    border-color:                @select-bg;
+
+    background-color:            @main-bg;
+}
+
+//----- Main Box -----//
+
+mainbox {
+    enabled:                     true;
+
+    children:                    [ "listview" ];
+
+    background-color:            transparent;
+}
+
+//----- Listview -----//
+
+listview {
+    enabled:                     true;
+
+    columns:                     5;
+    lines:                       1;
+
+    spacing:                     18px;
+    padding:                     18px;
+
+    cycle:                       true;
+    dynamic:                     true;
+
+    scrollbar:                   false;
+
+    layout:                      vertical;
+
+    reverse:                     false;
+
+    fixed-height:                true;
+    fixed-columns:               true;
+
+    cursor:                      "default";
+
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+
+//----- Elements -----//
+
+element {
+    enabled:                     true;
+
+    orientation:                 vertical;
+
+    spacing:                     6px;
+    padding:                     8px;
+
+    border-radius:               12px;
+
+    cursor:                      pointer;
+
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+
+/* Responsive */
+
+@media(max-aspect-ratio: 1.8) {
+    element {
+        orientation:             vertical;
+    }
+}
+
+//----- Selected -----//
+
+element selected.normal {
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
+}
+
+//----- Wallpaper Thumbnail -----//
+
+element-icon {
+    size:                        250px;
+
+    cursor:                      inherit;
+
+    border-radius:               8px;
+
+    background-color:            transparent;
+
+    horizontal-align:            0.5;
+}
+
+//----- Hide Text -----//
+
+element-text {
+    enabled:                     false;
+}
