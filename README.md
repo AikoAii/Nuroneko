@@ -177,4 +177,4 @@ Useful commands:
 
 ## License
 
-MIT
+MIT license
