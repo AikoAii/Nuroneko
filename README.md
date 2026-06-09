@@ -13,14 +13,26 @@
 </p>
 
 <p align="center">
-  <a href="#features">Features</a> •
   <a href="#preview">Preview</a> •
+  <a href="#features">Features</a> •
   <a href="#installation">Installation</a> •
   <a href="#repository-structure">Structure</a> •
   <a href="#keybindings">Keybindings</a>
 </p>
 
 ---
+
+## Preview
+
+<p align="center">
+  <img src=".meta/assets/desktop.png" width="100%" alt="Desktop">
+</p>
+
+<p align="center">
+  <img src=".meta/assets/rofi.png" width="32%" alt="Rofi">
+  <img src=".meta/assets/wallpaper.png" width="32%" alt="Wallpaper">
+  <img src=".meta/assets/keybinds.png" width="32%" alt="Keybinds">
+</p>
 
 ## Features
 
@@ -37,17 +49,6 @@
 - **Symlink deployment mode** — Development-friendly workflow
 - **Catppuccin Mocha** — Consistent theming across the desktop
 
-## Preview
-
-<p align="center">
-  <img src=".meta/assets/desktop.png" width="100%" alt="Desktop">
-</p>
-
-<p align="center">
-  <img src=".meta/assets/rofi.png" width="32%" alt="Rofi">
-  <img src=".meta/assets/wallpaper.png" width="32%" alt="Wallpaper">
-  <img src=".meta/assets/keybinds.png" width="32%" alt="Keybinds">
-</p>
 
 ## Core Components
 
