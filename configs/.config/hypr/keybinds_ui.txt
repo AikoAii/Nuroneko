@@ -6,52 +6,38 @@ SUPER  + E              →  Files
 SUPER  + C              →  Editor
 SUPER  + I              →  Notes
 SUPER  + A              →  Audio Control
+
 CTRL   + SHIFT + ESC    →  System Monitor
-
-SUPER  + W              →  Wallpaper
-SUPER  + ⇧ + W          →  Random Wallpaper
-SUPER  + CTRL + W       →  Restore Wallpaper
-
 
 󰘳 WINDOW
 SUPER  + Q              →  Kill Window
 SUPER  + SPACE          →  Toggle Float
 ALT    + ENTER          →  Fullscreen
 
-SUPER  + J              →  Toggle Split
 SUPER  + P              →  Toggle Pseudo
+SUPER  + J              →  Toggle Split
 SUPER  + G              →  Toggle Group
 
+SUPER  + U              →  Focus Urgent
+SUPER  + TAB            →  Previous Workspace
 
 󰘶 WORKSPACE
 SUPER  + [1-0]          →  Switch Workspace
 SUPER  + ⇧ + [1-0]      →  Move Window
 
-SUPER  + TAB            →  Previous Workspace
-SUPER  + U              →  Focus Urgent
-
+SUPER  + CTRL + →       →  Next Workspace
+SUPER  + CTRL + ←       →  Previous Workspace
+SUPER  + CTRL + ↓       →  Empty Workspace
 
 󰌌 SCRATCHPAD
 SUPER  + S              →  Toggle Scratchpad
 SUPER  + ⇧ + S          →  Send to Scratchpad
-
 SUPER  + T              →  Scratchpad Terminal
-SUPER  + M              →  Scratchpad Music
-
 
 󰖨 SCREENSHOT
 Print                   →  Full Screenshot
 ⇧ + Print               →  Region Screenshot
-
-CTRL + Print            →  Copy Screenshot
-CTRL + ⇧ + Print        →  Save + Copy
-
-SUPER + Print           →  Smart Screenshot
-SUPER + ⇧ + Print       →  Smart Save + Copy
-SUPER + CTRL + Print    →  Smart Copy
-
-SUPER + O               →  OCR → Copy Text
-
+SUPER + O               →  OCR Copy
 
 󰣇 CLIPBOARD / UTILITIES
 SUPER  + V              →  Clipboard History
@@ -59,52 +45,55 @@ SUPER  + ⇧ + V          →  Clear Clipboard
 
 SUPER  + .              →  Emoji Picker
 SUPER  + /              →  Keybind Cheat Sheet
-
 SUPER  + K              →  Color Picker
-SUPER  + ⇧ + F          →  File Search
-
-
-󰐥 SESSION / POWER
-SUPER  + ⇧ + L          →  Lock
-
-SUPER  + ESC            →  Power Menu
-SUPER  + CTRL + DEL     →  Wlogout
-
-SUPER  + CTRL + R       →  Reload Hyprland
-
-SUPER  + CTRL + ⇧ + Q   →  Exit Session
-SUPER  + CTRL + ⇧ + S   →  Shutdown
-SUPER  + CTRL + ⇧ + R   →  Reboot
-SUPER  + CTRL + ⇧ + P   →  Suspend
-
 
 󰘵 NOTIFICATIONS
 SUPER  + N              →  Toggle Notifications
 SUPER  + ⇧ + N          →  Notification Center
 SUPER  + CTRL + N       →  Clear Notifications
 
+󰐥 SESSION / POWER
+SUPER  + ⇧ + L          →  Lock Screen
+
+SUPER  + ESC            →  Power Menu
+SUPER  + CTRL + R       →  Reload Hyprland
+
+SUPER  + B              →  Toggle Waybar
+
+SUPER  + CTRL + ⇧ + Q   →  Exit Session
+SUPER  + CTRL + ⇧ + S   →  Shutdown
+SUPER  + CTRL + ⇧ + R   →  Reboot
+SUPER  + CTRL + ⇧ + P   →  Suspend
+
+󰕾 AUDIO
+Volume Up / Down        →  Adjust Volume
+Mute                    →  Toggle Audio
+Mic Mute                →  Toggle Microphone
+
+󰃠 BRIGHTNESS
+Brightness Up / Down    →  Adjust Brightness
+
+󰎆 MEDIA
+Play / Pause            →  Toggle Playback
+Next                    →  Next Track
+Previous                →  Previous Track
+
+󰌵 POWER PROFILES
+SUPER  + F1             →  Power Saver
+SUPER  + F2             →  Balanced
+SUPER  + F3             →  Daily
+SUPER  + F4             →  Performance
+
+󰌪 HYPRSHADE
+SUPER  + F9             →  Blue Light Filter
+SUPER  + F10            →  Vibrance
+SUPER  + ⇧ + F10        →  Disable Shaders
 
 󰖳 FOCUS
 SUPER  + ← → ↑ ↓        →  Move Focus
-
 
 󰆧 MOUSE
 SUPER  + Scroll         →  Switch Workspace
 
 SUPER  + Left Click     →  Move Window
 SUPER  + Right Click    →  Resize Window
-
-
-󰕾 AUDIO
-Volume Up / Down        →  Adjust Volume
-Mute                    →  Toggle Audio
-Mic Mute                →  Toggle Mic
-
-
-󰃠 BRIGHTNESS
-Brightness Up / Down    →  Adjust Brightness
-
-
-󰎆 MEDIA
-Next / Prev             →  Next / Previous Track
-Play / Pause            →  Toggle Playback
