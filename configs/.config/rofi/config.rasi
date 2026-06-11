@@ -1,4 +1,4 @@
-// Config //
+// config //
 configuration {
     modi:                        "drun,filebrowser,window,run";
     show-icons:                  true;
@@ -10,14 +10,13 @@ configuration {
     window-format:               "{w}{t}";
     font:                        "JetBrainsMono Nerd Font 10";
     icon-theme:                  "Tela-circle-dracula";
-} 
+}
 
 @theme "theme"
 
-// Main //
 window {
-    height:                      24em; /* Tinggi jendela mini dipertahankan */
-    width:                       45em; /* Lebar kompak dipertahankan */
+    height:                      24em;
+    width:                       45em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -35,47 +34,34 @@ mainbox {
     spacing:                     0em;
     padding:                     0em;
     orientation:                 horizontal;
-    children:                    [ "dummywall" , "listbox" ];
+    children:                    [ "dummywall", "listbox" ];
     background-color:            transparent;
 }
 
 dummywall {
     spacing:                     0em;
     padding:                     0em;
-    width:                       16em; 
+    width:                       16em;
     expand:                      false;
     orientation:                 horizontal;
     children:                    [ "mode-switcher" ];
     background-color:            transparent;
-    background-image: url("~/.cache/rofi/wallpaper.png", height);
+    background-image:            url("~/.cache/rofi/wallpaper.png", height);
 }
 
-// Modes //
 mode-switcher {
     orientation:                 vertical;
     enabled:                     true;
-    
-    /* Lebar area menu kiri */
-    width:                       3.2em; 
-    
-    /* Ditopang padding atas-bawah 5.5em agar kotak button tidak tertekan memanjang */
-    /* Nilai 0.6em di akhir tetap menjaga posisi menu agak bergeser ke kanan */
-    padding:                     5.5em 0.0em 5.5em 0.6em; 
-    
-    spacing:                     1.0em; 
+    width:                       3.2em;
+    padding:                     5.5em 0em 5.5em 0.6em;
+    spacing:                     1em;
     background-color:            transparent;
 }
 
 button {
     cursor:                      pointer;
-    
-    /* KUNCINYA DI SINI: Padding atas-bawah disetel ke 0px */
-    /* Ini akan memangkas habis sisa tinggi yang membuat kotaknya melonjong ke atas */
-    padding:                     0px 0px; 
-    
-    /* Sudut membulat yang pas untuk ukuran kotak mini */
-    border-radius:               10px; 
-    
+    padding:                     0px;
+    border-radius:               10px;
     background-color:            @main-bg;
     text-color:                  @main-fg;
 }
@@ -85,7 +71,6 @@ button selected {
     text-color:                  @main-bg;
 }
 
-// Inputs //
 inputbar {
     enabled:                     true;
     children:                    [ prompt, entry ];
@@ -112,36 +97,32 @@ entry {
     enabled:                     true;
     padding:                     0.5em 0.8em;
     cursor:                      text;
-    background-color:            transparent;
-    text-color:                  @main-fg;
     border:                      2px solid;
     border-radius:               0px 8px 8px 0px;
     border-color:                @main-br;
     background-color:            @main-bg;
+    text-color:                  @main-fg;
 }
 
-// Lists //
 listbox {
-    spacing:                     0.8em; 
-    padding:                     1.2em; 
-    /* Menghapus elemen "dummy" dari children agar tidak ada pemaksa ruang kosong bawah */
-    children:                    [ "inputbar" , "listview" ]; 
+    spacing:                     0.8em;
+    padding:                     1.2em;
+    children:                    [ "inputbar", "listview" ];
     background-color:            transparent;
 }
 
 listview {
     enabled:                     true;
-    spacing:                     4px; 
+    spacing:                     4px;
     padding:                     0em;
     columns:                     1;
-    /* Dinaikkan menjadi 6 baris agar mengisi ruang kosong bawah secara pas dan proporsional */
-    lines:                       6; 
+    lines:                       6;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
     reverse:                     false;
-    expand:                      true; /* Diaktifkan agar listview mengisi area box secara maksimal */
+    expand:                      true;
     fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
@@ -149,11 +130,10 @@ listview {
     text-color:                  @main-fg;
 }
 
-// Elements //
 element {
     enabled:                     true;
     spacing:                     0.8em;
-    padding:                     0.4em 0.8em; 
+    padding:                     0.4em 0.8em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
@@ -162,11 +142,11 @@ element {
 element selected.normal {
     background-color:            @select-bg;
     text-color:                  @select-fg;
-    border-radius:               10px; 
+    border-radius:               10px;
 }
 
 element-icon {
-    size:                        1.8em; 
+    size:                        1.8em;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;
