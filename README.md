@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".meta/assets/banner.png" width="75%" alt="Nuroneko Shell Banner">
+  <img src=".meta/assets/logo.png" width="75%" alt="Nuroneko Shell Banner">
 </p>
 
 <h1 align="center">Nuroneko</h1>
