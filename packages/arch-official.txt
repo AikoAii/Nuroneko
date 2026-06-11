@@ -4,6 +4,8 @@ findutils
 gawk
 grep
 
+wtype
+
 hyprland
 hyprlock
 hypridle
