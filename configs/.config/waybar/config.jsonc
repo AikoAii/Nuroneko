@@ -242,7 +242,7 @@
 
     // Modules: Control Panel Toggles
     "custom/system-update": {
-        "interval": 5,
+        "interval": 3,
         "exec": "updates.sh",
         "return-type": "json",
         "on-click": "kitty -e bash -c 'sudo pacman -Syu && flatpak update -y'",
