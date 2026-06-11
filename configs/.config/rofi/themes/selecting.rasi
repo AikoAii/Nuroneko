@@ -1,3 +1,4 @@
+// config //
 configuration {
     modi:                        "drun";
     show-icons:                  true;
