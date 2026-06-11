@@ -1,0 +1,8 @@
+profile laptop {
+    output eDP-1 enable
+}
+
+profile docked {
+    output HDMI-A-1 enable
+    output eDP-1 enable
+}
