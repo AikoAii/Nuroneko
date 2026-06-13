@@ -1,203 +1,167 @@
 # Alias Guide
 
-A collection of aliases included with Nuroneko to simplify daily terminal workflows.
+Nuroneko includes a curated collection of aliases designed to simplify common terminal workflows.
 
----
-
-## Basic
-
-| Alias    | Description               |
-| -------- | ------------------------- |
-| `cls`    | Clear terminal            |
-| `cl`     | Clear terminal            |
-| `q`      | Exit current shell        |
-| `reload` | Reload Fish configuration |
+These aliases focus on navigation, development, system management, package management, and Git operations.
 
 ---
 
 ## Navigation
 
-| Alias  | Description                  |
-| ------ | ---------------------------- |
-| `c`    | Change directory             |
-| `..`   | Go up one directory          |
-| `...`  | Go up two directories        |
-| `....` | Go up three directories      |
-| `h`    | Go to home directory         |
-| `prev` | Return to previous directory |
+Common shortcuts for moving around the filesystem.
+
+Examples:
+
+```bash
+..      # Parent directory
+...     # Two levels up
+....    # Three levels up
+h       # Home directory
+prev    # Previous directory
+```
 
 ---
 
-## Editor
+## File Management
 
-| Alias | Description       |
-| ----- | ----------------- |
-| `n`   | Open Neovim       |
-| `m`   | Open Micro editor |
+Aliases that improve file browsing and manipulation.
 
----
+Examples:
 
-## Files
+```bash
+ls      # Enhanced file listing
+l       # Detailed listing
+la      # Show hidden files
+lt      # Tree view
+yy      # Open Yazi
+```
 
-| Alias  | Description                        |
-| ------ | ---------------------------------- |
-| `py`   | Run Python                         |
-| `cpp`  | Run G++ compiler                   |
-| `ls`   | List files with icons              |
-| `l`    | Detailed file list with Git status |
-| `la`   | Show hidden files                  |
-| `ll`   | Long file listing                  |
-| `lt`   | Tree view                          |
-| `b`    | Open file with Bat                 |
-| `mk`   | Create directory recursively       |
-| `drag` | Drag and drop file utility         |
-| `yy`   | Open Yazi in current directory     |
+These aliases use modern CLI tools such as:
+
+* Eza
+* Bat
+* Yazi
 
 ---
 
 ## Search
 
-| Alias | Description                       |
-| ----- | --------------------------------- |
-| `rg`  | Ripgrep with smart case           |
-| `rgi` | Case-insensitive search           |
-| `fd`  | Find files including hidden files |
-| `fda` | Show absolute paths               |
-| `ff`  | Search files using FZF            |
+Fast file and content discovery.
 
----
+Examples:
 
-## System
+```bash
+rg      # Search text
+fd      # Find files
+ff      # Fuzzy search
+```
 
-| Alias    | Description                  |
-| -------- | ---------------------------- |
-| `top`    | Open Btop                    |
-| `df`     | Show disk usage              |
-| `du`     | Show directory size          |
-| `dua`    | Show all directory sizes     |
-| `free`   | Show memory usage            |
-| `ip`     | Colored IP output            |
-| `ports`  | Show listening ports         |
-| `ps`     | Process viewer               |
-| `psg`    | Live process viewer          |
-| `psgrep` | Search running processes     |
-| `k`      | Kill process                 |
-| `ka`     | Kill all matching processes  |
-| `pw`     | Power off system             |
-| `rbt`    | Reboot system                |
-| `jctl`   | View system logs             |
-| `jboot`  | View current boot logs       |
-| `failed` | Show failed systemd services |
-| `units`  | List active systemd units    |
+Powered by:
 
----
-
-## Network
-
-| Alias | Description                |
-| ----- | -------------------------- |
-| `ssh` | SSH through Kitty          |
-| `pi`  | Ping Google and Cloudflare |
-| `cu`  | Use Curlie                 |
+* Ripgrep
+* FD
+* FZF
 
 ---
 
 ## Development
 
-| Alias   | Description             |
-| ------- | ----------------------- |
-| `fast`  | Run Fastfetch           |
-| `serve` | Start local HTTP server |
+Convenience aliases for development workflows.
+
+Examples:
+
+```bash
+n       # Neovim
+fast    # Fastfetch
+serve   # Local web server
+```
 
 ---
 
-## Pacman
+## System
 
-| Alias       | Description                     |
-| ----------- | ------------------------------- |
-| `p`         | Pacman                          |
-| `searchpkg` | Search packages                 |
-| `querypkg`  | Query installed packages        |
-| `infopkg`   | Show package information        |
-| `update`    | Full system upgrade             |
-| `remove`    | Remove package and dependencies |
-| `cleanpkg`  | Clean package cache             |
-| `orphan`    | List orphan packages            |
+Common system administration shortcuts.
+
+Examples:
+
+```bash
+top     # System monitor
+ports   # Listening ports
+psg     # Process viewer
+jctl    # System logs
+```
+
+---
+
+## Package Management
+
+Package management shortcuts for Arch Linux.
+
+Examples:
+
+```bash
+update      # System upgrade
+searchpkg   # Search packages
+remove      # Remove package
+cleanpkg    # Clean cache
+```
 
 ---
 
 ## Git
 
-| Alias    | Description             |
-| -------- | ----------------------- |
-| `g`      | Git                     |
-| `gs`     | Git status              |
-| `ga`     | Add all modified files  |
-| `gA`     | Add all files           |
-| `gc`     | Git commit              |
-| `gcm`    | Git commit with message |
-| `gp`     | Git push                |
-| `gl`     | Git pull                |
-| `gd`     | Git diff                |
-| `gb`     | Git branches            |
-| `gco`    | Git checkout            |
-| `gcb`    | Create new branch       |
-| `gcl`    | Git clone               |
-| `glog`   | Git graph log           |
-| `gst`    | Git stash               |
-| `gstp`   | Git stash pop           |
-| `gundo`  | Undo last commit        |
-| `grs`    | Restore file            |
-| `grst`   | Unstage file            |
-| `gclean` | Remove untracked files  |
+Frequently used Git commands with shorter aliases.
+
+Examples:
+
+```bash
+gs      # git status
+ga      # git add
+gcm     # git commit -m
+gp      # git push
+glog    # git log graph
+```
 
 ---
 
 ## Docker
 
-| Alias | Description     |
-| ----- | --------------- |
-| `d`   | Docker          |
-| `dc`  | Docker Compose  |
-| `dps` | List containers |
-| `di`  | List images     |
+Short aliases for container management.
+
+Examples:
+
+```bash
+d       # docker
+dc      # docker compose
+dps     # list containers
+```
 
 ---
 
-## Archives
+## Typo Protection
 
-| Alias    | Description           |
-| -------- | --------------------- |
-| `untar`  | Extract TAR archive   |
-| `targz`  | Create TAR.GZ archive |
-| `unzipf` | Extract ZIP archive   |
+Nuroneko includes several typo guards that redirect common mistakes to the intended command.
 
----
+Examples:
 
-## Configuration
-
-| Alias     | Description           |
-| --------- | --------------------- |
-| `cfg`     | Open config directory |
-| `fishcfg` | Edit Fish config      |
-| `aliases` | Edit alias file       |
+```bash
+sl      # ls
+cim     # nvim
+chmox   # chmod
+```
 
 ---
 
-## Utilities
+## Viewing All Aliases
 
-| Alias  | Description                |
-| ------ | -------------------------- |
-| `envs` | Show environment variables |
-| `hlp`  | Open TLDR pages            |
+To see every available alias:
 
----
+```bash
+alias
+```
 
-## Typo Guard
+Or inspect the source file directly:
 
-| Alias   | Description       |
-| ------- | ----------------- |
-| `sl`    | Redirect to ls    |
-| `cim`   | Redirect to nvim  |
-| `chmox` | Redirect to chmod |
-| `grpe`  | Redirect to grep  |
+```bash
+n ~/.config/fish/conf.d/alias.fish
+```
