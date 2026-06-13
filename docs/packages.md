@@ -1,211 +1,162 @@
-# Packages
+# Package Reference
 
-All packages installed by Nuroneko are listed in the `packages/` directory. The installer reads these files and installs packages automatically.
+Nuroneko installs packages from manifests located in the `packages/` directory.
 
-## Official Packages (`packages/arch-official.txt`)
-
-Installed via `pacman -S --needed --noconfirm`.
-
-### Core Utilities
-
-| Package | Description |
-|---------|-------------|
-| `bash` | GNU Bourne-Again SHell |
-| `coreutils` | Core GNU utilities |
-| `findutils` | Find utilities |
-| `gawk` | GNU AWK |
-| `grep` | Pattern matching |
-
-### Hyprland Ecosystem
-
-| Package | Description |
-|---------|-------------|
-| `hyprland` | Tiling Wayland compositor |
-| `hyprlock` | Screen locker |
-| `hypridle` | Idle daemon |
-| `hyprpicker` | Color picker |
-| `hyprpaper` | Wallpaper daemon |
-
-### Desktop Components
-
-| Package | Description |
-|---------|-------------|
-| `waybar` | Status bar |
-| `fuzzel` | Application launcher |
-| `swaync` | Notification center |
-| `wlogout` | Logout menu |
-| `kanshi` | Display configuration |
-| `rofi` | Versatile launcher/menu |
-
-### Screenshot Tools
-
-| Package | Description |
-|---------|-------------|
-| `grim` | Screenshot utility |
-| `slurp` | Region selector |
-| `satty` | Screenshot annotation |
-| `flameshot` | Advanced screenshot tool |
-
-### Clipboard
-
-| Package | Description |
-|---------|-------------|
-| `wl-clipboard` | Wayland clipboard utilities |
-| `cliphist` | Clipboard history manager |
-
-### Terminal & Shell
-
-| Package | Description |
-|---------|-------------|
-| `kitty` | GPU-accelerated terminal emulator |
-| `fish` | Friendly interactive shell |
-| `zsh` | Z shell |
-
-### Editor & Tools
-
-| Package | Description |
-|---------|-------------|
-| `neovim` | Hyperextensible text editor |
-| `tmux` | Terminal multiplexer |
-| `starship` | Cross-shell prompt |
-| `yazi` | Terminal file manager |
-
-### System Monitoring
-
-| Package | Description |
-|---------|-------------|
-| `atuin` | Shell history manager |
-| `btop` | System monitor |
-| `cava` | Audio visualizer |
-| `fastfetch` | System information display |
-
-### Audio
-
-| Package | Description |
-|---------|-------------|
-| `pipewire` | Audio/video server |
-| `pipewire-pulse` | PulseAudio replacement |
-| `wireplumber` | PipeWire session manager |
-| `playerctl` | Media player controller |
-| `pamixer` | PulseAudio mixer CLI |
-| `pavucontrol` | PulseAudio volume control GUI |
-| `brightnessctl` | Brightness controller |
-
-### Networking
-
-| Package | Description |
-|---------|-------------|
-| `networkmanager` | Network connection manager |
-| `network-manager-applet` | System tray applet |
-
-### Bluetooth
-
-| Package | Description |
-|---------|-------------|
-| `bluez` | Bluetooth protocol stack |
-| `bluez-utils` | Bluetooth utilities |
-| `blueman` | Bluetooth manager GUI |
-
-### System
-
-| Package | Description |
-|---------|-------------|
-| `libnotify` | Desktop notifications library |
-| `polkit` | Authorization framework |
-| `polkit-gnome` | GNOME polkit agent |
-| `dbus` | Message bus system |
-| `dconf` | Low-level configuration system |
-| `iproute2` | IP routing utilities |
-| `iw` | Wireless tools |
-| `imagemagick` | Image manipulation |
-| `jq` | JSON processor |
-
-### File Management
-
-| Package | Description |
-|---------|-------------|
-| `file-roller` | Archive manager |
-| `nemo` | File manager |
-
-### Media
-
-| Package | Description |
-|---------|-------------|
-| `mpv` | Video player |
-| `imv` | Image viewer |
-
-### OCR & Translation
-
-| Package | Description |
-|---------|-------------|
-| `tesseract` | OCR engine |
-| `translate-shell` | CLI translator |
-
-### XDG & Portal
-
-| Package | Description |
-|---------|-------------|
-| `xdg-desktop-portal` | Desktop integration portal |
-| `xdg-desktop-portal-gtk` | GTK portal backend |
-| `xdg-desktop-portal-hyprland` | Hyprland portal backend |
-| `xdg-utils` | Desktop integration utilities |
-| `qt5-wayland` | Qt5 Wayland support |
-| `qt6-wayland` | Qt6 Wayland support |
-
-### Fonts
-
-| Package | Description |
-|---------|-------------|
-| `noto-fonts` | Google Noto fonts |
-| `noto-fonts-cjk` | CJK font support |
-| `noto-fonts-emoji` | Emoji font |
-| `ttf-font-awesome` | Icon font |
-| `ttf-jetbrains-mono-nerd` | JetBrains Mono Nerd Font |
-| `ttf-nerd-fonts-symbols` | Nerd Fonts symbols |
-
-### Modern CLI Tools
-
-| Package | Description |
-|---------|-------------|
-| `bat` | Cat with syntax highlighting |
-| `eza` | Modern ls replacement |
-| `fzf` | Fuzzy finder |
-| `zoxide` | Smarter cd command |
-| `procs` | Modern ps replacement |
-| `dust` | Modern du replacement |
-| `curlie` | Modern curl frontend |
-| `gping` | Ping with graph |
-| `micro` | Simple terminal editor |
-
-### Misc
-
-| Package | Description |
-|---------|-------------|
-| `pacman-contrib` | Pacman helper scripts |
-| `qalculate-qt` | Calculator |
+The installer reads these files and installs packages automatically during deployment.
 
 ---
 
-## AUR Packages (`packages/arch-aur.txt`)
+## Package Sources
 
-Installed via `paru` (preferred) or `yay`. If neither is available, AUR packages are skipped with a warning.
+| File                | Description                                  |
+| ------------------- | -------------------------------------------- |
+| `arch-official.txt` | Packages from the official Arch repositories |
+| `arch-aur.txt`      | Packages from the Arch User Repository (AUR) |
 
-| Package | Description |
-|---------|-------------|
-| `hyprshade` | Hyprland shader manager |
-| `swayosd` | On-screen display for volume/brightness |
-| `rofimoji` | Emoji picker for rofi |
-| `pokemon-colorscripts-git` | Pokemon color scripts for terminal |
-| `zen-browser-bin` | Zen web browser |
+Official packages are installed using:
+
+```bash
+pacman -S --needed
+```
+
+AUR packages are installed using:
+
+```bash
+paru
+```
+
+or
+
+```bash
+yay
+```
+
+when available.
+
+---
+
+## Package Groups
+
+### Desktop Environment
+
+Core desktop components and Wayland integration.
+
+Includes:
+
+* Hyprland ecosystem
+* Status bar
+* Launchers
+* Notifications
+* Display management
+* Session utilities
+
+### Terminal Environment
+
+Shells, prompts, terminal utilities, and command-line tooling.
+
+Includes:
+
+* Fish
+* Zsh
+* Starship
+* Tmux
+* Modern CLI utilities
+
+### Development Tools
+
+Tools commonly used for editing, navigation, and workflow enhancement.
+
+Includes:
+
+* Neovim
+* Yazi
+* FZF
+* Fastfetch
+* Btop
+
+### Media & Utilities
+
+Desktop applications and supporting utilities.
+
+Includes:
+
+* Screenshot tools
+* Clipboard utilities
+* OCR tools
+* Translation tools
+* Audio utilities
+
+### System Integration
+
+Packages required for desktop functionality.
+
+Includes:
+
+* PipeWire
+* NetworkManager
+* Bluetooth stack
+* XDG portals
+* PolicyKit
+
+### Fonts
+
+Fonts used throughout the desktop environment.
+
+Includes:
+
+* Noto Fonts
+* Nerd Fonts
+* Font Awesome
+
+---
+
+## AUR Packages
+
+Nuroneko also installs a small number of AUR packages for functionality not available in the official repositories.
+
+Current AUR packages include:
+
+* Hyprshade
+* SwayOSD
+* Rofimoji
+* Pokemon Colorscripts
+* Zen Browser
+
+> [!NOTE]
+> If neither `paru` nor `yay` is installed, AUR packages are skipped automatically.
+
+---
 
 ## Customizing Packages
 
-To add or remove packages, edit the corresponding file:
+Package manifests can be modified before installation.
 
-- `packages/arch-official.txt` — Official repository packages
-- `packages/arch-aur.txt` — AUR packages
+### Official Packages
+
+```text
+packages/arch-official.txt
+```
+
+### AUR Packages
+
+```text
+packages/arch-aur.txt
+```
 
 Rules:
-- One package per line
-- Lines starting with `#` are comments
-- Blank lines are ignored
+
+* One package per line
+* Empty lines are ignored
+* Lines beginning with `#` are treated as comments
+
+---
+
+## Reinstalling Packages
+
+After modifying a package manifest, run the installer again:
+
+```bash
+./install.sh
+```
+
+The installer only installs missing packages and does not reinstall packages that already exist on the system.

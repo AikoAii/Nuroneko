@@ -1,172 +1,454 @@
 # Troubleshooting
 
-## Installer Errors
-
-### `pacman not found`
-
-```
-[ERROR] pacman not found (Arch/Artix only)
-```
-
-Nuroneko only supports Arch Linux and Artix Linux. Other distributions (Fedora, Debian, Ubuntu, etc.) are not supported.
+This document covers common issues that may occur during installation or daily use of Nuroneko.
 
 ---
 
-### `Unsupported distribution`
+# Installation
 
-```
-[ERROR] Unsupported distribution: Ubuntu 24.04 LTS (Only Arch and Artix are supported)
+## Unsupported Distribution
+
+```text
+[ERROR] Unsupported distribution
 ```
 
-The installer reads `/etc/os-release` and only accepts `ID=arch` or `ID=artix`. If you are on a derivative (e.g., EndeavourOS, Manjaro), the ID may differ. You can try modifying `scripts/install/detect-distro.sh` to add your distro.
+Nuroneko officially supports:
+
+* Arch Linux
+* Artix Linux
+
+Other distributions are not tested and may not work correctly.
 
 ---
 
-### `Neither sudo nor doas found`
+## pacman Not Found
 
+```text
+[ERROR] pacman not found
 ```
+
+Ensure you are using an Arch-based system and that `pacman` is installed and available in `PATH`.
+
+---
+
+## Neither sudo nor doas Found
+
+```text
 [ERROR] Neither sudo nor doas found
 ```
 
-Install `sudo` or `doas`:
+Install either:
 
-```bash
-# As root
+```bash id="7d3vf7"
 pacman -S sudo
 ```
 
----
-
-### `No AUR helper found`
-
-```
-[WARN] No AUR helper found (paru or yay). Skipping AUR packages.
-```
-
-This is a warning, not an error. AUR packages will be skipped. To install them:
-
-```bash
-# Install paru (recommended)
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-```
-
-Then re-run the installer.
+or configure `doas`.
 
 ---
 
-### `Do not run this installer as root`
+## Installer Executed as Root
 
+```text
+[ERROR] Do not run this installer as root
 ```
-[ERROR] Do not run this installer as root or with sudo
-```
 
-Run the installer as your normal user:
+Run the installer as a normal user:
 
-```bash
-# Wrong
-sudo ./install.sh
-
-# Correct
+```bash id="e2cprv"
 ./install.sh
 ```
 
-The installer will use `sudo` internally only when needed (e.g., for pacman).
+Do not use:
+
+```bash id="ng8ikc"
+sudo ./install.sh
+```
 
 ---
 
-## Post-Installation Issues
+## No AUR Helper Found
 
-### Tmux plugins not loading
+```text
+[WARN] No AUR helper found
+```
 
-If tmux starts without the Catppuccin theme or status modules:
+AUR packages are optional.
 
-1. Open tmux
-2. Press `Ctrl-Space + I` (prefix + I) to install plugins via TPM
-3. Press `Ctrl-Space + r` to reload the configuration
+Install one of:
 
-If TPM itself is missing:
+```bash id="mh8s07"
+paru
+```
 
-```bash
+or
+
+```bash id="xl93vh"
+yay
+```
+
+and re-run the installer.
+
+---
+
+# Hyprland
+
+## Hyprland Does Not Start
+
+Verify installation:
+
+```bash id="53grhc"
+pacman -Q hyprland
+```
+
+Check logs:
+
+```bash id="zzg8z9"
+journalctl -b
+```
+
+Common causes:
+
+* Missing GPU drivers
+* Broken configuration
+* Incorrect environment variables
+
+---
+
+## Black Screen After Login
+
+Check:
+
+```bash id="q6lyad"
+~/.config/hypr/
+```
+
+for syntax errors.
+
+You can temporarily move the configuration:
+
+```bash id="2u06zs"
+mv ~/.config/hypr ~/.config/hypr.bak
+```
+
+and test with a fresh configuration.
+
+---
+
+## Waybar Not Appearing
+
+Verify:
+
+```bash id="35crhj"
+waybar
+```
+
+from a terminal.
+
+Common causes:
+
+* Invalid JSON configuration
+* Missing fonts
+* Missing modules
+
+Check logs:
+
+```bash id="ksdnjk"
+waybar
+```
+
+and review any errors.
+
+---
+
+## Wallpapers Not Loading
+
+Verify:
+
+```bash id="z7et3k"
+hyprpaper
+```
+
+is running.
+
+Check:
+
+```bash id="vcd4su"
+~/.local/share/wallpapers/
+```
+
+for deployed wallpapers.
+
+---
+
+# Audio
+
+## No Sound
+
+Verify PipeWire services:
+
+```bash id="h8kt84"
+systemctl --user status pipewire
+systemctl --user status wireplumber
+```
+
+Test output devices:
+
+```bash id="l5s6nk"
+pavucontrol
+```
+
+---
+
+## Volume Keys Not Working
+
+Check:
+
+```bash id="m8ccvw"
+pamixer --get-volume
+```
+
+If the command fails, reinstall:
+
+```bash id="a2c9v0"
+pacman -S pamixer
+```
+
+---
+
+# Network
+
+## Wi-Fi Not Working
+
+Verify:
+
+```bash id="5j6f4k"
+systemctl status NetworkManager
+```
+
+Enable it:
+
+```bash id="qv0x1e"
+sudo systemctl enable --now NetworkManager
+```
+
+---
+
+## DNS Issues
+
+Test connectivity:
+
+```bash id="4b0h9u"
+ping 1.1.1.1
+```
+
+If IP connectivity works but domains fail:
+
+```bash id="6h35mr"
+ping google.com
+```
+
+review DNS configuration.
+
+---
+
+# Bluetooth
+
+## Bluetooth Not Working
+
+Verify:
+
+```bash id="pw1j0g"
+systemctl status bluetooth
+```
+
+Enable it:
+
+```bash id="fdixz2"
+sudo systemctl enable --now bluetooth
+```
+
+---
+
+## Device Pairing Fails
+
+Remove existing pairing:
+
+```bash id="pmkjzo"
+bluetoothctl
+```
+
+Inside bluetoothctl:
+
+```text
+remove XX:XX:XX:XX:XX:XX
+scan on
+pair XX:XX:XX:XX:XX:XX
+```
+
+---
+
+# Shell
+
+## Fish Plugins Missing
+
+Refresh plugins:
+
+```fish
+fisher update
+```
+
+If Fisher is missing:
+
+```fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+fisher install jorgebucaran/fisher
+```
+
+---
+
+## Aliases Not Available
+
+Reload Fish:
+
+```fish
+source ~/.config/fish/config.fish
+```
+
+or restart the shell.
+
+---
+
+## Functions Not Found
+
+Verify:
+
+```fish
+functions mkcd
+```
+
+Check:
+
+```text
+~/.config/fish/functions/
+```
+
+for missing files.
+
+---
+
+# Tmux
+
+## Plugins Not Loading
+
+Install TPM plugins:
+
+```text
+Ctrl-Space + I
+```
+
+Reload:
+
+```text
+Ctrl-Space + r
+```
+
+---
+
+## TPM Missing
+
+Install TPM manually:
+
+```bash id="4xkgbh"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 ---
 
-### Fish shell plugins not working
+# Symlink Mode
 
-If Fisher plugins are not loaded:
+## Broken Symlinks
 
-```bash
-# Install Fisher
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
-fisher install jorgebucaran/fisher
+Check:
 
-# Install plugins from fish_plugins
-fisher update
+```bash id="41s1k6"
+find ~/.config -xtype l
 ```
 
----
+If the repository was moved:
 
-### Hyprland not starting
-
-If Hyprland fails to start from tty1:
-
-1. Check that `.bash_profile` is deployed to `~/`
-2. Verify Hyprland is installed: `pacman -Q hyprland`
-3. Check for GPU driver issues: `journalctl -b | grep -i gpu`
-
----
-
-### Broken symlinks after moving the repository
-
-If you used `--symlink` mode and then moved the repository directory, all symlinks will break. Fix by either:
-
-- Moving the repository back to its original location
-- Re-running the installer from the new location:
-
-```bash
-cd /new/location/nuroneko
+```bash id="s7h14r"
 ./install.sh --symlink
 ```
 
+to regenerate links.
+
 ---
 
-### Services not enabled
+# Services
 
-If services (NetworkManager, bluetooth, sddm) are not running after installation:
+## Services Not Enabled
 
-```bash
-# For systemd
-sudo systemctl enable --now NetworkManager bluetooth sddm
+For systemd:
 
-# For OpenRC
+```bash id="8n0w8j"
+sudo systemctl enable --now NetworkManager bluetooth
+```
+
+For OpenRC:
+
+```bash id="t6h5na"
 sudo rc-update add NetworkManager default
 sudo rc-update add bluetoothd default
-sudo rc-update add sddm default
+```
 
-# For runit
+For runit:
+
+```bash id="3o8vyu"
 sudo ln -sf /etc/sv/NetworkManager /var/service/
-sudo ln -sf /etc/sv/bluetoothd /var/service/
-sudo ln -sf /etc/sv/sddm /var/service/
+```
 
-# For dinit
+For dinit:
+
+```bash id="w7jnhn"
 sudo dinitctl enable NetworkManager
-sudo dinitctl enable bluetoothd
-sudo dinitctl enable sddm
 ```
 
 ---
 
-## Validation
+# Validation
 
-After installation, the installer automatically validates:
+## Validation Reports Warnings
 
-- Configuration files deployed correctly
-- Assets (icons, wallpapers) in place
-- Scripts in `~/.local/bin/` are executable
-- No broken symlinks
-- Services enabled
+Warnings are usually non-fatal.
 
-If validation reports warnings, review them — most are non-critical and indicate optional items that were skipped.
+Common reasons:
+
+* Optional package missing
+* AUR helper unavailable
+* Service skipped
+* User customization detected
+
+Review the warning message before taking action.
+
+---
+
+# Getting Help
+
+Before reporting an issue, include:
+
+```bash id="u7sy5v"
+fastfetch
+```
+
+```bash id="2t9f2v"
+hyprctl version
+```
+
+```bash id="2n45z7"
+pacman -Q hyprland
+```
+
+and any relevant log output.
+
+This information makes troubleshooting significantly easier.

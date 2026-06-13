@@ -1,110 +1,110 @@
 # Installation Guide
 
-## Prerequisites
+## Requirements
 
-- **Arch Linux** or **Artix Linux** (other distributions are not supported)
-- **pacman** package manager
-- **sudo** or **doas** for privilege escalation
-- **git** for cloning the repository
-- Internet connection (for package installation)
+Before installing Nuroneko, ensure your system meets the following requirements:
 
-### Optional
+* Arch Linux or Artix Linux
+* `pacman`
+* `git`
+* `sudo` or `doas`
+* Internet connection
 
-- **paru** or **yay** for AUR packages (the installer will warn if neither is found)
+> [!NOTE]
+> Other Linux distributions are not officially supported at this time.
 
-## Installation
+---
 
-### 1. Clone the Repository
+## Clone the Repository
 
 ```bash
 git clone https://github.com/AikoAii/nuroneko.git
 cd nuroneko
 ```
 
-### 2. Run the Installer
+---
 
-#### Default Mode (Copy)
+## Installation
+
+### Standard Installation
 
 ```bash
 ./install.sh
 ```
 
-Files are copied from the repository to their target locations. This is the recommended mode for most users.
+Recommended for most users.
 
-#### Symlink Mode
+Configurations are copied to their target locations.
+
+### Development Installation
 
 ```bash
 ./install.sh --symlink
 ```
 
-Creates symbolic links from target locations back to the repository. Useful during development — editing files in the repo immediately updates the live configuration.
+Creates symbolic links instead of copying files.
 
-### 3. Post-Installation
+Useful when actively modifying configurations, as changes are reflected immediately without reinstalling.
+
+---
+
+## What the Installer Does
+
+The installer automatically:
+
+1. Detects the distribution and init system
+2. Installs required packages
+3. Creates configuration backups
+4. Deploys configurations
+5. Configures supported services
+6. Applies required permissions
+7. Validates the installation
+
+---
+
+## Backups
+
+Before deploying any configuration, Nuroneko creates a timestamped backup.
+
+```text
+~/.local/share/nuroneko/backups/
+```
+
+> [!IMPORTANT]
+> Existing configurations are never overwritten without first being backed up.
+
+---
+
+## After Installation
 
 After installation completes:
 
-1. **Log out and log back in** for all changes to take effect
-2. If using tmux, press `prefix + I` (default: `Ctrl-Space + I`) to install tmux plugins via TPM
-3. Open Fish shell and run `fisher update` if you need to refresh Fish plugins
+1. Log out and log back in
+2. Restart Hyprland if necessary
+3. Verify that all components start correctly
 
-## What Gets Deployed
+Optional:
 
-### Configuration Files (`~/.config/`)
+* Run `fisher update` to refresh Fish plugins
+* Run `prefix + I` in tmux to install TPM plugins
 
-| Component | Description |
-|-----------|-------------|
-| `btop/` | System monitor configuration |
-| `cava/` | Audio visualizer |
-| `fastfetch/` | System information display |
-| `fish/` | Fish shell (config, plugins, aliases, functions) |
-| `hypr/` | Hyprland compositor (keybindings, appearance, rules) |
-| `kanshi/` | Display configuration |
-| `nvim/` | Neovim editor |
-| `rofi/` | Application launcher |
-| `starship.toml` | Cross-shell prompt |
-| `swaync/` | Notification center |
-| `tmux/` | Terminal multiplexer |
-| `waybar/` | Status bar |
-| `wlogout/` | Logout menu |
-| `yazi/` | Terminal file manager |
-| `zsh/` | Zsh shell configuration |
-
-### Home Directory Files (`~/`)
-
-| File | Description |
-|------|-------------|
-| `.bash_profile` | Bash login shell profile (starts Hyprland on tty1) |
-| `.bashrc` | Bash interactive shell configuration |
-| `.bash_logout` | Bash logout hook |
-| `.tmux.conf` | Tmux configuration with TPM plugin management |
-| `.xprofile` | D-Bus session launcher |
-| `.face` | User avatar |
-
-### Scripts (`~/.local/bin/`)
-
-Various utility scripts for system management:
-
-- `battery.sh` — Battery status for Waybar
-- `bluetooth.sh` — Bluetooth toggle
-- `brightness.sh` — Brightness control
-- `screenshot.sh` — Screenshot utility
-- `volume.sh` — Volume control
-- `wallpaper-*.sh` — Wallpaper management
-- And more...
-
-### Assets
-
-| Type | Source | Destination |
-|------|--------|-------------|
-| Icons | `assets/icons/` | `~/.local/share/icons/` |
-| Wallpapers | `assets/wallpapers/` | `~/.local/share/wallpapers/` |
+---
 
 ## Uninstallation
 
-The installer creates a timestamped backup before deploying. To restore:
+Nuroneko does not provide an automated uninstall script.
 
-1. Find your backup in `~/.local/share/nuroneko/backups/`
-2. Check the `MANIFEST.txt` for a list of backed-up items
-3. Copy the backed-up items back to their original locations
+To restore your previous configuration:
 
-There is no automated uninstall script — the backup manifest serves as a restore guide.
+1. Open the backup directory
+2. Locate the desired backup snapshot
+3. Review `MANIFEST.txt`
+4. Restore the files you want to recover
+
+---
+
+## Troubleshooting
+
+If you encounter issues during installation, see:
+
+* [Troubleshooting Guide](./troubleshooting.md)
