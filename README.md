@@ -187,7 +187,7 @@ When contributing, please ensure that changes remain consistent with the project
 
 Nuroneko builds upon the work of many open-source projects and communities that make modern Linux desktops possible.
 
-Special thanks to the maintainers, contributors, and users of the software that forms the foundation of this project.
+<!--Special thanks to the maintainers, contributors, and users of the software that forms the foundation of this project.-->
 
 ---
 
