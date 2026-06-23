@@ -113,15 +113,27 @@ Users remain free to choose their preferred applications while benefiting from a
 
 ## Preview
 
-<p align="center">
-  <img src=".meta/assets/desktop.png" width="100%" alt="Desktop">
-</p>
+<table align="center">
+  <tr>
+    <td colspan="3">
+      <a href="https://youtu.be/w_LmZ3DnkMw?si=jRVfj1dQAXsSO_lg">
+        <img src=".meta/assets/video-preview.png" width="100%" alt="Nuroneko Showcase">
+      </a>
+    </td>
+  </tr>
 
-<p align="center">
-  <img src=".meta/assets/rofi.png" width="32%" alt="Launcher">
-  <img src=".meta/assets/wallpaper.png" width="32%" alt="Wallpaper">
-  <img src=".meta/assets/keybinds.png" width="32%" alt="Keybindings">
-</p>
+  <tr>
+    <td>
+      <img src=".meta/assets/rofi.png" alt="Launcher">
+    </td>
+    <td>
+      <img src=".meta/assets/wallpaper.png" alt="Wallpaper">
+    </td>
+    <td>
+      <img src=".meta/assets/keybinds.png" alt="Keybindings">
+    </td>
+  </tr>
+</table>
 
 ---
 
