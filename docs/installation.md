@@ -18,8 +18,8 @@ Before installing Nuroneko, ensure your system meets the following requirements:
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/AikoAii/nuroneko.git
-cd nuroneko
+git clone https://github.com/AikoAii/Nuroneko.git
+cd Nuroneko
 ```
 
 ---
@@ -67,7 +67,7 @@ The installer automatically:
 Before deploying any configuration, Nuroneko creates a timestamped backup.
 
 ```text
-~/.local/share/nuroneko/backups/
+~/.local/share/Nuroneko/backups/
 ```
 
 > [!IMPORTANT]
