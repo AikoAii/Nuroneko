@@ -142,8 +142,8 @@ Users remain free to choose their preferred applications while benefiting from a
 Clone the repository:
 
 ```bash
-git clone https://github.com/AikoAii/nuroneko.git ~/.config/nuroneko
-cd ~/.config/nuroneko
+git clone https://github.com/AikoAii/Nuroneko.git ~/.config/Nuroneko
+cd ~/.config/Nuroneko
 ```
 
 Standard installation:
@@ -164,7 +164,7 @@ Development installation:
 > Backup archives are stored in:
 >
 > ```text
-> ~/.local/share/nuroneko/backups/
+> ~/.local/share/Nuroneko/backups/
 > ```
 
 ---
