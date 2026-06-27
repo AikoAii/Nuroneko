@@ -33,7 +33,7 @@ The environment is designed around modern Wayland workflows, keyboard-driven int
 </p>
 
 <p align="center">
-  <a href="#why-nuroneko">Why Nuroneko?</a> •
+  <a href="#why-nuroneko">Why Nuroneko</a> •
   <a href="#what-it-includes">What It Includes?</a> •
   <a href="#supported-systemsYou Get</a> •
   <a href="#preview">Preview</a> •
@@ -43,7 +43,7 @@ The environment is designed around modern Wayland workflows, keyboard-driven int
 
 ---
 
-## Why Nuroneko?
+## Why Nuroneko
 
 Many Hyprland setups focus primarily on appearance.
 
