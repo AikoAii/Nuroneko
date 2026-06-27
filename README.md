@@ -208,7 +208,11 @@ Nuroneko builds upon the work of many open-source projects and communities that 
 
 <p align="left">
   <a href="https://trakteer.id/aikoaii" target="_blank">
-    <img src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png" height="40"/>
+    <img src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png" height="40" alt="Trakteer"/>
+  </a>
+
+  <a href="https://ko-fi.com/aikoai" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" height="40" alt="Ko-fi"/>
   </a>
 </p>
 
