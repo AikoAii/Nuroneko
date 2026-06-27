@@ -17,4 +17,4 @@ SELECTED=$(
 
 [ -z "$SELECTED" ] && exit
 
-~/.config/AikoAi/wallpaper-set "$SELECTED"
+"$HOME/.config/Nuroneko/configs/.local/bin/wallpaper-set.sh" "$SELECTED"
