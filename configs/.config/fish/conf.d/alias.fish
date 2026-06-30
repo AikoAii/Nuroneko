@@ -86,8 +86,6 @@ alias gclean="git clean -fd"
 
 # QUICK ACCESS
 alias envs="env | sort"
-alias cf="cd ~/.config/fish/config.fish"
-alias cfa="nvim ~/.config/fish/conf.d/alias.fish"
 alias hlp="tldr"
 
 # TYPO GUARD
