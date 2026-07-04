@@ -4,6 +4,14 @@
   "logo": {
     "type": "none"
   },
+  
+  // "logo": {
+  //   "source": "$HOME/.config/fastfetch/icon-custom/cute-rin.txt",
+  //   "height": 20,
+  //   "padding": {
+  //     "top": 1
+  //   }
+  // },
 
   "display": {
     "separator": " : "

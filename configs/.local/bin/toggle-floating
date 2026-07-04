@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+hyprctl dispatch togglefloating
+
+sleep 0.05
+
+hyprctl dispatch resizeactive exact 55% 55%

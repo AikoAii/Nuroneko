@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  cat <<EOF
+Usage:
+    power-profile daily
+    power-profile powersave
+    power-profile performance
+    power-profile status
+EOF
+  exit 1
+}
+
+case "${1:-}" in
+daily)
+  exec power-profile-daily
+  ;;
+
+powersave)
+  exec power-profile-powersave
+  ;;
+
+performance)
+  exec power-profile-performance
+  ;;
+
+status)
+  exec power-profile-status
+  ;;
+
+*)
+  usage
+  ;;
+esac

@@ -1,21 +1,32 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
+# Directories
 WALL_DIR="$HOME/.local/share/wallpapers"
 CURRENT="$WALL_DIR/current"
 
 ROFI_CACHE="$HOME/.cache/rofi"
 ROFI_WALL="$ROFI_CACHE/wallpaper.png"
 
-IMG="$1"
+THEME_DIR="/usr/share/sddm/themes/aiko-sddm/assets"
 
-[[ ! -f "$IMG" ]] && exit 1
+# Transition
+TRANSITION_DURATION=0.75
+TRANSITION_FPS=120
+
+# Preview
+ROFI_SIZE=500
+
+IMG="${1:-}"
+
+[[ -f "$IMG" ]] || exit 1
 
 mkdir -p "$ROFI_CACHE"
 
-# Monitor size
 read -r WIDTH HEIGHT < <(
-  hyprctl monitors -j |
-    jq -r '.[0] | "\(.width) \(.height)"'
+    hyprctl monitors -j |
+        jq -r '.[0] | "\(.width) \(.height)"'
 )
 
 # Random transition
@@ -50,10 +61,18 @@ esac
 # Save current wallpaper
 ln -sfn "$(realpath "$IMG")" "$CURRENT"
 
-
-# Generate rofi preview
+# Generate SDDM background
 magick "$IMG" \
-  -resize 500x500^ \
-  -gravity center \
-  -extent 500x500 \
-  "$ROFI_WALL"
+    -resize "$((WIDTH / 2))x$((HEIGHT / 2))^" \
+    -gravity center \
+    -extent "$((WIDTH / 2))x$((HEIGHT / 2))" \
+    -blur 0x1 \
+    -brightness-contrast -12x-5 \
+    "$THEME_DIR/background.jpg"
+
+# Generate Rofi preview
+magick "$IMG" \
+    -resize "${ROFI_SIZE}x${ROFI_SIZE}^" \
+    -gravity center \
+    -extent "${ROFI_SIZE}x${ROFI_SIZE}" \
+    "$ROFI_WALL"

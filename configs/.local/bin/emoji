@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+THEME="$HOME/.config/rofi/themes/emoji.rasi"
+
+command -v rofimoji >/dev/null || {
+  notify-send "Emoji" "rofimoji is not installed."
+  exit 1
+}
+
+exec rofimoji \
+  --action clipboard \
+  --selector rofi \
+  --selector-args="-theme $THEME" \
+  --hidden

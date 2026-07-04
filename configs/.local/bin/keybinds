@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+THEME="$HOME/.config/rofi/themes/keybinds.rasi"
+KEYBINDS="$HOME/.config/hypr/keybinds_ui.txt"
+
+exec rofi \
+    -dmenu \
+    -i \
+    -theme "$THEME" \
+    -p "󰌌 Keybinds" \
+    < "$KEYBINDS"

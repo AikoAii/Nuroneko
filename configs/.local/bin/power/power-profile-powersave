@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+notify() {
+    notify-send \
+        -i battery-good-symbolic \
+        "Power Profile" \
+        "$1"
+}
+
+sudo cpupower frequency-set \
+    -g schedutil \
+    -d 1.40GHz \
+    -u 1.70GHz >/dev/null
+
+notify "󰌪 Power Save enabled"

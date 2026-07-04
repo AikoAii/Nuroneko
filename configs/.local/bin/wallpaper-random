@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 WALL_DIR="$HOME/.local/share/wallpapers"
 CACHE_DIR="$HOME/.cache/wallpaper-random"
-
 QUEUE="$CACHE_DIR/queue"
 
 mkdir -p "$CACHE_DIR"
@@ -15,10 +16,11 @@ if [[ ! -s "$QUEUE" ]]; then
         | shuf > "$QUEUE"
 fi
 
-IMG=$(head -n 1 "$QUEUE")
+IMG="$(head -n 1 "$QUEUE")"
 
+[[ -n "$IMG" ]] || exit 1
 
 tail -n +2 "$QUEUE" > "$QUEUE.tmp"
 mv "$QUEUE.tmp" "$QUEUE"
 
-~/.config/AikoAi/wallpaper-set "$IMG"
+exec wallpaper-set "$IMG"

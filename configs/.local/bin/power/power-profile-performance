@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+notify() {
+    notify-send \
+        -i preferences-system-performance \
+        "Power Profile" \
+        "$1"
+}
+
+sudo cpupower frequency-set \
+    -g performance \
+    -u 3.70GHz >/dev/null
+
+notify "󰓅 Performance enabled"
