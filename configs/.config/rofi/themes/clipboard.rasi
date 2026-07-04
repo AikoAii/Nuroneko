@@ -1,16 +1,16 @@
 // Config //
 configuration {
     modi:                        "drun";
-    show-icons:                  false; 
+    show-icons:                  false;
     font:                        "JetBrainsMono Nerd Font 10";
-} 
+}
 
 @theme "theme"
 
 // Main Window //
 window {
-    height:                      30em;    
-    width:                       55em;    
+    height:                      30em;
+    width:                       55em;
     fullscreen:                  false;
     enabled:                     true;
     cursor:                      "default";
@@ -61,7 +61,7 @@ entry {
     border-radius:               0px 8px 8px 0px;
     border-color:                @main-br;
     background-color:            @main-bg;
-    placeholder:                 "Search for previously copied text...";
+    placeholder:                 "Search clipboard...";
     placeholder-color:           @main-fg;
 }
 
@@ -71,7 +71,7 @@ listview {
     spacing:                     6px;
     padding:                     0.2em 0em 0em 0em;
     columns:                     1;
-    lines:                       8;       
+    lines:                       8;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -87,7 +87,7 @@ listview {
 element {
     enabled:                     true;
     spacing:                     1em;
-    padding:                     0.6em 1em; 
+    padding:                     0.6em 1em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
