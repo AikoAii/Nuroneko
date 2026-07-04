@@ -2,35 +2,37 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 usage() {
-  cat <<EOF
+    cat <<EOF
 Usage:
-    power-profile daily
+    power-profile balance
     power-profile powersave
     power-profile performance
     power-profile status
 EOF
-  exit 1
+    exit 1
 }
 
 case "${1:-}" in
-daily)
-  exec power-profile-daily
-  ;;
+    balance)
+        exec "$SCRIPT_DIR/power/power-profile-balance"
+        ;;
 
-powersave)
-  exec power-profile-powersave
-  ;;
+    powersave)
+        exec "$SCRIPT_DIR/power/power-profile-powersave"
+        ;;
 
-performance)
-  exec power-profile-performance
-  ;;
+    performance)
+        exec "$SCRIPT_DIR/power/power-profile-performance"
+        ;;
 
-status)
-  exec power-profile-status
-  ;;
+    status)
+        exec "$SCRIPT_DIR/power/power-profile-status"
+        ;;
 
-*)
-  usage
-  ;;
+    *)
+        usage
+        ;;
 esac

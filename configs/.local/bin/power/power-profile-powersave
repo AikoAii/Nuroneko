@@ -9,9 +9,40 @@ notify() {
         "$1"
 }
 
-sudo cpupower frequency-set \
-    -g schedutil \
-    -d 1.40GHz \
-    -u 1.70GHz >/dev/null
+# 1. power-profiles-daemon
+if command -v powerprofilesctl >/dev/null 2>&1; then
+    powerprofilesctl set power-saver
 
-notify "󰌪 Power Save enabled"
+    notify "󰌪  Power Save mode enabled"
+    exit 0
+fi
+
+# 2. cpupower
+if command -v cpupower >/dev/null 2>&1; then
+    sudo cpupower frequency-set -g powersave >/dev/null
+
+    notify "󰌪  Power Save mode enabled"
+    exit 0
+fi
+
+# 3. sysfs
+FOUND=false
+
+for GOV in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+    if [[ -w "$GOV" ]]; then
+        echo powersave | sudo tee "$GOV" >/dev/null
+        FOUND=true
+    fi
+done
+
+if [[ "$FOUND" == true ]]; then
+    notify "󰌪  Power Save mode enabled (sysfs)"
+    exit 0
+fi
+
+notify-send \
+    -u critical \
+    "Power Profile" \
+    "Failed to enable Power Save mode"
+
+exit 1

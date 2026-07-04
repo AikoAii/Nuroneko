@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+notify() {
+    notify-send \
+        -i preferences-system-power \
+        "Power Profile" \
+        "$1"
+}
+
+# 1. power-profiles-daemon
+if command -v powerprofilesctl >/dev/null 2>&1; then
+    powerprofilesctl set balanced
+
+    notify "󰾅  Balance mode enabled"
+    exit 0
+fi
+
+# 2. cpupower
+if command -v cpupower >/dev/null 2>&1; then
+    sudo cpupower frequency-set -g schedutil >/dev/null
+
+    notify "󰾅  Balance mode enabled"
+    exit 0
+fi
+
+# 3. sysfs
+FOUND=false
+
+for GOV in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+    if [[ -w "$GOV" ]]; then
+        echo schedutil | sudo tee "$GOV" >/dev/null
+        FOUND=true
+    fi
+done
+
+if [[ "$FOUND" == true ]]; then
+    notify "󰾅  Balance mode enabled (sysfs)"
+    exit 0
+fi
+
+notify-send \
+    -u critical \
+    "Power Profile" \
+    "Failed to enable Balance mode"
+
+exit 1

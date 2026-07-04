@@ -9,8 +9,42 @@ notify() {
         "$1"
 }
 
-sudo cpupower frequency-set \
-    -g performance \
-    -u 3.70GHz >/dev/null
+# 1. power-profiles-daemon
+if command -v powerprofilesctl >/dev/null 2>&1; then
+    if powerprofilesctl list | grep -q "performance"; then
+        powerprofilesctl set performance
 
-notify "󰓅 Performance enabled"
+        notify "󰓅  Performance mode enabled"
+        exit 0
+    fi
+fi
+
+# 2. cpupower
+if command -v cpupower >/dev/null 2>&1; then
+    sudo cpupower frequency-set -g performance >/dev/null
+
+    notify "󰓅  Performance mode enabled (cpupower)"
+    exit 0
+fi
+
+# 3. sysfs fallback
+FOUND=false
+
+for GOV in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+    if [[ -w "$GOV" ]]; then
+        echo performance | sudo tee "$GOV" >/dev/null
+        FOUND=true
+    fi
+done
+
+if [[ "$FOUND" == true ]]; then
+    notify "󰓅  Performance mode enabled (sysfs)"
+    exit 0
+fi
+
+notify-send \
+    -u critical \
+    "Power Profile" \
+    "Failed to enable Performance mode"
+
+exit 1
