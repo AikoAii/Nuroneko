@@ -116,7 +116,9 @@ Users remain free to choose their preferred applications while benefiting from a
 <table align="center">
   <tr>
     <td colspan="3">
-      <img src=".meta/assets/video-preview.png" width="100%" alt="Nuroneko Showcase">
+      <a href="https://youtu.be/w_LmZ3DnkMw?si=jRVfj1dQAXsSO_lg">
+        <img src=".meta/assets/video-preview.png" width="100%" alt="Nuroneko Showcase">
+      </a>
     </td>
   </tr>
 
