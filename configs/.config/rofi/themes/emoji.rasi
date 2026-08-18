@@ -1,98 +1,122 @@
-// config //
+// General Config
+configuration {
+    show-icons: false;
+    font:       "JetBrainsMono Nerd Font 10";
+}
+
 @import "theme"
 
-configuration {
-    show-icons:                  false;
-    font:                        "JetBrainsMono Nerd Font 10";
-}
-
+// Main Window
 window {
-    height:                      22em;
-    width:                       34em;
-    transparency:                "real";
-    background-color:            @main-bg;
-    enabled:                     true;
-    cursor:                      "default";
-    border:                      2px solid;
-    border-radius:               12px;
-    border-color:                @main-br;
-    fullscreen:                  false;
+    height:           24em;
+    width:            38em;
+    transparency:     "real";
+    background-color: @main-bg;
+    enabled:          true;
+    cursor:           "default";
+    spacing:          0em;
+    padding:          0em;
+    border:           1px;
+    border-radius:    20px;
+    border-color:     @main-br;
+    fullscreen:       false;
 }
 
+// Content Container
 mainbox {
-    spacing:                     0;
-    background-color:            transparent;
-    children:                    [ inputbar, listview ];
+    enabled:          true;
+    orientation:      vertical;
+    spacing:          0.8em;
+    padding:          1.2em;
+    children:         [ "inputbar", "listview" ];
+    background-color: transparent;
 }
 
+// Search Bar Box
 inputbar {
-    enabled:                     true;
-    children:                    [ prompt, entry ];
-    spacing:                     0em;
-    padding:                     2px;
-    cursor:                      pointer;
-    background-color:            @main-bg;
-    text-color:                  @main-fg;
-    border:                      0px 0px 2px 0px solid;
-    border-color:                @main-br;
+    enabled:          true;
+    children:         [ prompt, entry ];
+    spacing:          0.5em;
+    padding:          0.25em;
+    cursor:           pointer;
+    background-color: @main-bg;
+    text-color:       @main-fg;
+    border:           1px;
+    border-radius:    14px;
+    border-color:     @main-br;
 }
 
+// Search Badge/Label
 prompt {
-    enabled:                     true;
-    padding:                     0.6em 1.2em;
-    text-align:                  center;
-    cursor:                      default;
-    text-color:                  @select-fg;
-    background-color:            @main-br;
-    border-radius:               8px 0px 0px 8px;
+    enabled:          true;
+    padding:          0.6em 0.9em;
+    text-align:       center;
+    cursor:           default;
+    text-color:       @select-fg;
+    background-color: @select-bg;
+    border-radius:    11px;
 }
 
+// Text Input Field
 entry {
-    enabled:                     true;
-    padding:                     0.6em 1em;
-    cursor:                      text;
-    text-color:                  @main-fg;
-    background-color:            transparent;
+    enabled:          true;
+    expand:           true;
+    padding:          0.6em 0.7em;
+    cursor:           text;
+    background-color: transparent;
+    text-color:       @main-fg;
+    placeholder:      "Search emoji...";
+    placeholder-color: @main-fg;
 }
 
+// Emoji Grid View
 listview {
-    columns:                     9;
-    lines:                       5;
-    spacing:                     8px;
-    padding:                     12px;
-    cycle:                       true;
-    dynamic:                     true;
-    layout:                      vertical;
-    flow:                        horizontal;
-    reverse:                     false;
-    fixed-height:                true;
-    fixed-columns:               true;
-    cursor:                      "default";
-    background-color:            transparent;
-    text-color:                  @main-fg;
+    enabled:          true;
+    columns:          9;
+    lines:            5;
+    spacing:          7px;
+    padding:          0.3em;
+    cycle:            true;
+    dynamic:          true;
+    layout:           vertical;
+    flow:             horizontal;
+    reverse:          false;
+    fixed-height:     true;
+    fixed-columns:    true;
+    cursor:           "default";
+    background-color: transparent;
+    text-color:       @main-fg;
 }
 
+// Emoji Grid Item
 element {
-    background-color:            transparent;
-    padding:                     10px 0px;
-    border-radius:               8px;
+    enabled:          true;
+    padding:          0.5em 0em;
+    cursor:           pointer;
+    border-radius:    13px;
+    background-color: transparent;
+    text-color:       @main-fg;
 }
 
+// Active/Selected Emoji Item
 element selected.normal {
-    background-color:            @select-bg;
-    text-color:                  @select-fg;
+    background-color: @select-bg;
+    text-color:       @select-fg;
+    border-radius:    13px;
 }
 
+// Hidden Icon Placeholder
 element-icon {
-    size:                        0;
-    background-color:            transparent;
+    size:             0;
+    background-color: transparent;
 }
 
+// Emoji Icon Text Display
 element-text {
-    cursor:                      pointer;
-    vertical-align:              0.5;
-    horizontal-align:            0.5;
-    font:                        "FiraCode Nerd Font 20";
-    background-color:            transparent;
-    text-color:                  inherit;
+    cursor:           pointer;
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+    font:             "FiraCode Nerd Font 20";
+    background-color: transparent;
+    text-color:       inherit;
 }
