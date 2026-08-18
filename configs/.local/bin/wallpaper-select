@@ -3,19 +3,60 @@
 set -euo pipefail
 
 WALL_DIR="$HOME/.local/share/wallpapers"
+CACHE_DIR="$HOME/.cache/rofi/wallpapers"
 THEME="$HOME/.config/rofi/themes/selecting.rasi"
+
+THUMB_WIDTH=640
+THUMB_HEIGHT=360
+THUMB_QUALITY=82
+
+mkdir -p "$CACHE_DIR"
+
+
+get_thumbnail() {
+    local img="$1"
+    local mtime
+    local hash
+    local thumb
+
+    mtime=$(stat -c '%Y' "$img")
+    hash=$(printf '%s:%s' "$img" "$mtime" | sha256sum | cut -d' ' -f1)
+
+    thumb="$CACHE_DIR/$hash.jpg"
+
+    if [[ ! -f "$thumb" ]]; then
+        magick "$img" \
+            -thumbnail "${THUMB_WIDTH}x${THUMB_HEIGHT}^" \
+            -gravity center \
+            -extent "${THUMB_WIDTH}x${THUMB_HEIGHT}" \
+            -quality "$THUMB_QUALITY" \
+            "$thumb"
+    fi
+
+    printf '%s\n' "$thumb"
+}
+
 
 selected="$(
     find "$WALL_DIR" \
         -maxdepth 1 \
         -type f \
         ! -name "current" \
-        | sort \
-        | while read -r img; do
-            printf "%s\0icon\x1f%s\n" "$img" "$img"
+        -print0 \
+        | sort -z \
+        | while IFS= read -r -d '' img; do
+
+            thumb="$(get_thumbnail "$img")"
+
+            printf "%s\0icon\x1f%s\n" "$img" "$thumb"
+
         done \
-        | rofi -dmenu -theme "$THEME"
+        | rofi \
+            -dmenu \
+            -show-icons \
+            -theme "$THEME"
 )"
+
 
 [[ -z "$selected" ]] && exit 0
 

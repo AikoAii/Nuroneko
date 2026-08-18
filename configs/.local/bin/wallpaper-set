@@ -9,8 +9,6 @@ CURRENT="$WALL_DIR/current"
 ROFI_CACHE="$HOME/.cache/rofi"
 ROFI_WALL="$ROFI_CACHE/wallpaper.png"
 
-THEME_DIR="/usr/share/sddm/themes/aiko-sddm/assets"
-
 # Transition
 TRANSITION_DURATION=0.75
 TRANSITION_FPS=120

@@ -8,28 +8,39 @@ FILE="$DIR/$(date +%Y-%m-%d_%H-%M-%S).png"
 mkdir -p "$DIR"
 
 notify() {
-  notify-send -i camera-photo "Screenshot" "$1"
+    notify-send -i camera-photo "Screenshot" "$1"
+}
+
+copy() {
+    wl-copy <"$FILE"
 }
 
 usage() {
-  echo "Usage: screenshot {full|region}"
-  exit 1
+    echo "Usage: screenshot {full|region|active}"
+    exit 1
 }
 
 case "${1:-}" in
 full)
-  grim "$FILE"
-  wl-copy <"$FILE"
-  notify "Fullscreen copied"
-  ;;
+    grim "$FILE"
+    copy
+    notify "Fullscreen copied"
+    ;;
 
 region)
-  grim -g "$(slurp)" "$FILE"
-  wl-copy <"$FILE"
-  notify "Region copied"
-  ;;
+    grim -g "$(slurp)" "$FILE"
+    copy
+    notify "Region copied"
+    ;;
+
+active)
+    GEOM=$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+    grim -g "$GEOM" "$FILE"
+    copy
+    notify "Active window copied"
+    ;;
 
 *)
-  usage
-  ;;
+    usage
+    ;;
 esac
