@@ -1,46 +1,76 @@
-/* Colors */
+/* ============================================================
+ *  PALETTE
+ * ============================================================ */
 
-@define-color bar-bg      rgba(17, 17, 27, 0);
-@define-color main-bg     rgba(24, 24, 37, 0.70);
+@define-color bar-bg             rgba(0, 0, 0, 0);
 
-@define-color main-fg     #cdd6f4;
-@define-color subtext     #a6adc8;
+@define-color surface            rgba(28, 29, 36, 0.94);
+@define-color surface-2          rgba(35, 37, 45, 0.96);
+@define-color surface-hover      rgba(48, 50, 61, 0.98);
 
-@define-color accent-bg   #cba6f7;
-@define-color accent-fg   #11111b;
+@define-color outline            rgba(230, 228, 240, 0.08);
+@define-color outline-hover      rgba(230, 228, 240, 0.13);
 
-@define-color blue        #74c7ec;
-@define-color green       #a6e3a1;
-@define-color teal        #94e2d5;
-@define-color warning     #f9e2af;
-@define-color critical    #f38ba8;
-@define-color lavender    #b4befe;
+@define-color fg                  #e8e6ef;
+@define-color subtext             #b8bac6;
+@define-color muted               #858895;
 
-/* Base */
+@define-color primary             #d8c7ff;
+@define-color primary-soft       rgba(216, 199, 255, 0.14);
+@define-color primary-strong     rgba(216, 199, 255, 0.22);
+@define-color on-primary          #352e46;
+
+@define-color blue                #a9c8ff;
+@define-color green               #b8dcb0;
+@define-color teal                #a9d8d0;
+@define-color warning             #e9ca8e;
+@define-color critical            #f0b6b2;
+
+
+/* ============================================================
+ *  BASE
+ * ============================================================ */
 
 * {
     border: none;
     border-radius: 0;
+
     font-family: "JetBrainsMono Nerd Font", monospace;
-    font-weight: bold;
     font-size: 12px;
-    min-height: 10px;
+    font-weight: 700;
+
+    min-height: 0;
+
+    transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        opacity 180ms ease;
 }
 
 window#waybar {
     background: @bar-bg;
+    color: @fg;
 }
 
-/* Tooltips */
+
+/* ============================================================
+ *  TOOLTIP
+ * ============================================================ */
 
 tooltip {
-    background: rgba(17, 17, 27, 0.96);
-    color: @main-fg;
+    background: rgba(24, 25, 31, 0.98);
 
-    border: 1px solid rgba(203, 166, 247, 0.15);
-    border-radius: 14px;
+    color: @fg;
 
-    padding: 8px;
+    border: 1px solid @outline;
+    border-radius: 16px;
+
+    padding: 9px 10px;
+}
+
+tooltip label {
+    color: @fg;
 }
 
 tooltip #calendar {
@@ -48,7 +78,7 @@ tooltip #calendar {
 }
 
 tooltip #calendar .month {
-    color: @accent-bg;
+    color: @primary;
     font-size: 13px;
 }
 
@@ -61,269 +91,499 @@ tooltip #calendar .today {
     text-decoration: underline;
 }
 
-/* Panels */
 
+/* ============================================================
+ *  SHARED SURFACES
+ * ============================================================ */
+
+#tray,
 #workspaces,
 #custom-media,
-#tray,
+#custom-cava,
 #system-info,
 #system-levels,
-#time,
 #keyboard,
-#control-panel,
-#custom-cava {
-    background: @main-bg;
-    color: @main-fg;
+#time,
+#control-panel {
 
+    background: @surface;
+
+    border: 1px solid @outline;
     border-radius: 18px;
 
     margin: 6px 4px;
-    padding: 0 14px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    min-height: 26px;
 
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
-        box-shadow 0.25s ease;
+    padding: 0 11px;
 }
 
-#workspaces {
-    margin-left: 12px;
-}
-
-#control-panel {
-    margin-right: 12px;
-}
-
+#tray:hover,
 #workspaces:hover,
 #custom-media:hover,
-#tray:hover,
+#custom-cava:hover,
 #system-info:hover,
 #system-levels:hover,
-#time:hover,
 #keyboard:hover,
-#control-panel:hover,
-#custom-cava:hover {
-    background: rgba(49, 50, 68, 0.9);
+#time:hover,
+#control-panel:hover {
 
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.12),
-        0 0 12px rgba(203, 166, 247, 0.15);
+    background: @surface-hover;
+
+    border-color: @outline-hover;
 }
 
-/* Workspaces */
 
-#workspaces button {
-    box-shadow: none;
-    text-shadow: none;
-
-    color: @subtext;
-
-    min-width: 20px;
-
-    margin: 4px 2px;
-    padding: 0 6px;
-
-    border-radius: 14px;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-#workspaces button.active {
-    background: @accent-bg;
-    color: @accent-fg;
-
-    min-width: 24px;
-
-    box-shadow: 0 0 8px rgba(203, 166, 247, 0.25);
-}
-
-#workspaces button:hover {
-    background: rgba(203, 166, 247, 0.15);
-    color: @main-fg;
-}
-
-#workspaces button.urgent {
-    color: @critical;
-}
-
-/* Modules */
-
-#custom-cpu,
-#custom-ram,
-#custom-temp,
-#custom-brightness,
-#custom-battery,
-#custom-volume,
-#custom-microphone,
-#custom-system-update,
-#custom-do-not-disturb,
-#custom-networkmanager,
-#custom-capslock,
-#hyprland-language,
-#idle_inhibitor,
-#clock,
-#custom-bluetooth,
-#custom-power {
-    margin: 0 8px;
-    padding: 0;
-}
-
-#time #idle_inhibitor {
-    color: @lavender;
-    margin-right: 4px;
-}
-
-#time #clock {
-    color: @main-fg;
-}
-
-#keyboard #hyprland-language {
-    color: @lavender;
-}
-
-#keyboard #custom-capslock {
-    color: @warning;
-}
+/* ============================================================
+ *  LEFT — TRAY
+ * ============================================================ */
 
 #tray {
     margin-left: 10px;
-    padding: 0 10px;
+    padding: 0 9px;
 }
 
 #tray > widget,
 #tray > .passive,
 #tray > .active,
 #tray > .needs-attention {
-    margin: 0 5px;
+    margin: 0 4px;
 }
 
 #tray image {
-    padding: 0 2px;
+    padding: 0 3px;
 }
 
-#custom-media {
-    color: @accent-bg;
-    font-weight: 900;
+
+/* ============================================================
+ *  LEFT — WORKSPACES
+ * ============================================================ */
+
+#workspaces {
+    padding: 0 5px;
 }
+
+#workspaces button {
+    background: transparent;
+
+    color: @muted;
+
+    box-shadow: none;
+    text-shadow: none;
+
+    min-width: 18px;
+
+    margin: 3px 2px;
+    padding: 0 4px;
+
+    border-radius: 13px;
+}
+
+#workspaces button.active {
+    background: @primary;
+    color: @on-primary;
+
+    min-width: 25px;
+
+    padding: 0 6px;
+}
+
+#workspaces button:hover {
+    background: @primary-soft;
+    color: @fg;
+}
+
+#workspaces button.urgent {
+    color: @critical;
+    background: rgba(240, 182, 178, 0.10);
+}
+
+
+/* ============================================================
+ *  LEFT — MEDIA
+ * ============================================================ */
+
+#custom-media {
+    color: @primary;
+
+    font-weight: 800;
+
+    padding: 0 12px;
+
+    min-width: 18px;
+}
+
+#custom-media:hover {
+    background: @primary-soft;
+    border-color: rgba(216, 199, 255, 0.18);
+}
+
+#custom-media.muted {
+    color: @muted;
+}
+
+
+/* ============================================================
+ *  LEFT — CAVA
+ * ============================================================ */
 
 #custom-cava {
     color: @blue;
-    font-size: 12px;
+
+    font-size: 11px;
     letter-spacing: 1px;
+
+    padding: 0 10px;
+
+    min-width: 20px;
+}
+
+#custom-cava:hover {
+    color: @primary;
 }
 
 #custom-cava.hidden {
     background: transparent;
+
+    border-color: transparent;
+
     color: transparent;
+
     min-width: 0;
+
+    margin-left: 0;
+    margin-right: 0;
+
+    padding: 0;
+
     opacity: 0;
 }
 
-/* States */
+
+/* ============================================================
+ *  CENTER — SYSTEM INFO
+ * ============================================================ */
+
+#system-info {
+    padding: 0 12px;
+}
+
+#custom-cpu,
+#custom-ram,
+#custom-temp {
+    margin: 0 8px;
+    padding: 0;
+}
 
 #custom-cpu {
     color: @blue;
 }
 
-#custom-ram,
-#custom-battery {
+#custom-ram {
     color: @green;
 }
 
-#custom-temp,
-#custom-power {
-    color: @critical;
+#custom-temp {
+    color: @warning;
+}
+
+
+/* ============================================================
+ *  RIGHT — SYSTEM LEVELS
+ * ============================================================ */
+
+#system-levels {
+    padding: 0 12px;
+}
+
+#custom-brightness,
+#custom-battery,
+#custom-volume,
+#custom-microphone {
+    margin: 0 7px;
+    padding: 0;
 }
 
 #custom-brightness {
     color: @warning;
 }
 
-#custom-volume {
-    color: @lavender;
+#custom-battery {
+    color: @green;
 }
 
-#custom-microphone,
+#custom-volume {
+    color: @primary;
+}
+
+#custom-microphone {
+    color: @teal;
+}
+
+
+/* ============================================================
+ *  RIGHT — KEYBOARD
+ * ============================================================ */
+
+#keyboard {
+    padding: 0 9px;
+}
+
+#keyboard #hyprland-language {
+    color: @primary;
+
+    margin: 0 4px;
+}
+
+#keyboard #custom-capslock {
+    color: @warning;
+
+    margin-left: 5px;
+}
+
+
+/* ============================================================
+ *  RIGHT — TIME
+ * ============================================================ */
+
+#time {
+    padding: 0 13px;
+}
+
+#time #idle_inhibitor {
+    color: @primary;
+
+    margin-right: 7px;
+}
+
+#time #clock {
+    color: @fg;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+
+    padding: 0 2px;
+}
+
+
+/* ============================================================
+ *  RIGHT — CONTROL PANEL
+ * ============================================================ */
+
+#control-panel {
+    margin-right: 10px;
+
+    padding: 0 9px;
+}
+
+#custom-system-update,
+#custom-do-not-disturb,
+#custom-bluetooth,
+#custom-networkmanager,
+#custom-power {
+
+    margin: 0 6px;
+    padding: 0;
+}
+
+#custom-system-update {
+    color: @warning;
+}
+
+#custom-do-not-disturb {
+    color: @subtext;
+}
+
 #custom-bluetooth {
     color: @teal;
 }
 
-#custom-networkmanager.connected,
-#custom-bluetooth.connected {
+#custom-networkmanager {
     color: @blue;
 }
 
-#custom-media.muted,
-#custom-bluetooth.off {
-    color: @subtext;
+#custom-power {
+    color: @critical;
 }
 
-#custom-volume.muted,
-#custom-microphone.muted {
-    color: @critical;
+
+/* ============================================================
+ *  NETWORK
+ * ============================================================ */
+
+#custom-networkmanager.connected {
+    color: @blue;
 }
 
 #custom-networkmanager.critical,
 #custom-networkmanager.offline {
     color: @critical;
+
+    background: rgba(240, 182, 178, 0.08);
+
+    border-radius: 11px;
+
+    padding: 0 7px;
 }
 
-#custom-do-not-disturb.enabled {
+
+/* ============================================================
+ *  BLUETOOTH
+ * ============================================================ */
+
+#custom-bluetooth.connected {
+    color: @blue;
+}
+
+#custom-bluetooth.off {
+    color: @muted;
+}
+
+
+/* ============================================================
+ *  AUDIO STATES
+ * ============================================================ */
+
+#custom-volume.muted,
+#custom-microphone.muted {
+
     color: @critical;
+
+    background: rgba(240, 182, 178, 0.12);
+
+    border-radius: 11px;
+
+    padding: 0 7px;
+}
+
+#custom-volume.warning,
+#custom-microphone.warning {
+    color: @warning;
+}
+
+
+/* ============================================================
+ *  DO NOT DISTURB
+ * ============================================================ */
+
+#custom-do-not-disturb.enabled {
+
+    color: @critical;
+
+    background: rgba(240, 182, 178, 0.12);
+
+    border-radius: 11px;
+
+    padding: 0 7px;
 }
 
 #custom-do-not-disturb.disabled {
     color: @green;
 }
 
-#custom-volume.warning,
-#custom-battery.warning,
+
+/* ============================================================
+ *  SYSTEM UPDATE
+ * ============================================================ */
+
 #custom-system-update.warning,
 #custom-system-update {
     color: @warning;
 }
 
+
+/* ============================================================
+ *  BATTERY STATES
+ * ============================================================ */
+
+#custom-battery.warning {
+    color: @warning;
+}
+
 #custom-battery.charging {
+
     color: @green;
 
-    background: rgba(166, 227, 161, 0.12);
+    background: rgba(184, 220, 176, 0.12);
 
-    border-radius: 12px;
-    padding: 0 8px;
+    border-radius: 11px;
 
-    animation: pulse 2.5s ease-in-out infinite;
+    padding: 0 7px;
+
+    animation: battery-pulse 2.8s ease-in-out infinite;
 }
 
 #custom-battery.critical {
+
     color: @critical;
-    background: rgba(243, 139, 168, 0.12);
 
-    animation: blink 1.5s ease infinite;
+    background: rgba(240, 182, 178, 0.12);
+
+    border-radius: 11px;
+
+    padding: 0 7px;
+
+    animation: battery-blink 1.6s ease infinite;
 }
 
-/* Animations */
 
-@keyframes blink {
-    50% {
-        opacity: 0.4;
-    }
+/* ============================================================
+ *  POWER
+ * ============================================================ */
+
+#custom-power:hover {
+
+    color: @critical;
+
+    background: rgba(240, 182, 178, 0.10);
+
+    border-radius: 11px;
+
+    padding: 0 7px;
 }
 
-@keyframes pulse {
+
+/* ============================================================
+ *  CLOCK INTERACTION
+ * ============================================================ */
+
+#time:hover #clock {
+    color: @primary;
+}
+
+
+/* ============================================================
+ *  SUBTLE ANIMATIONS
+ * ============================================================ */
+
+@keyframes battery-blink {
+
     0% {
-        text-shadow: 0 0 1px rgba(166, 227, 161, 0.2);
+        opacity: 1;
     }
 
     50% {
-        text-shadow: 0 0 8px rgba(166, 227, 161, 0.6);
+        opacity: 0.45;
     }
 
     100% {
-        text-shadow: 0 0 1px rgba(166, 227, 161, 0.2);
+        opacity: 1;
+    }
+}
+
+@keyframes battery-pulse {
+
+    0% {
+        opacity: 0.90;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.90;
     }
 }
