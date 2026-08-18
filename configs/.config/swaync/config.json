@@ -8,9 +8,9 @@
   "control-center-exclusive-zone": false,
 
   "notification-window-width": 360,
-  "control-center-width": 380,
+  "control-center-width": 390,
 
-  "notification-icon-size": 48,
+  "notification-icon-size": 44,
 
   "timeout": 5,
   "timeout-low": 3,
@@ -18,11 +18,90 @@
 
   "fit-to-screen": true,
 
-  "control-center-margin-top": 12,
-  "control-center-margin-right": 12,
-  "control-center-margin-bottom": 12,
+  "control-center-margin-top": 10,
+  "control-center-margin-right": 10,
+  "control-center-margin-bottom": 10,
+
+  "notification-grouping": true,
 
   "widgets": [
+    "title",
+    "buttons-grid",
+    "backlight",
+    "volume",
+    "mpris",
     "notifications"
-  ]
+  ],
+
+  "widget-config": {
+    "title": {
+      "text": "Control Center",
+      "clear-all-button": true,
+      "button-text": "Clear"
+    },
+
+    "buttons-grid": {
+      "buttons-per-row": 3,
+
+      "actions": [
+        {
+          "label": "󰖩",
+          "type": "toggle",
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+          "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
+        },
+
+        {
+          "label": "󰂯",
+          "type": "toggle",
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'",
+          "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
+        },
+
+        {
+          "label": "󰂛",
+          "type": "toggle",
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && swaync-client --dnd-on || swaync-client --dnd-off'",
+          "update-command": "sh -c 'swaync-client --get-dnd | grep -q true && echo true || echo false'"
+        },
+
+        {
+          "label": "󰹑",
+          "command": "grim - | wl-copy"
+        },
+
+        {
+          "label": "󰍉",
+          "command": "rofi -show drun"
+        },
+
+        {
+          "label": "󰐥",
+          "command": "wlogout"
+        }
+      ]
+    },
+
+    "backlight": {
+      "label": "󰃠",
+      "device": "amdgpu_bl1",
+      "subsystem": "backlight",
+      "min": 1
+    },
+
+    "volume": {
+      "label": "󰕾",
+      "show-per-app": false
+    },
+
+    "mpris": {
+      "autohide": true,
+      "show-album-art": "when-available",
+      "loop-carousel": false
+    },
+
+    "notifications": {
+      "vexpand": false
+    }
+  }
 }
