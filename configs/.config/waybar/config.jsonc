@@ -212,8 +212,8 @@
         "rotate": 0,
 
         "format-icons": {
-            "activated": "󰥔",
-            "deactivated": ""
+            "activated": "󰥔 ",
+            "deactivated": " "
         },
 
         "tooltip": true
@@ -227,7 +227,7 @@
         "format": "{:%H:%M}",
         "rotate": 0,
 
-        "format-alt": "{:%a  ·  %d %b  ·  %H:%M}",
+        "format-alt": "{:%a, %d %b}",
 
         "tooltip-format":
             "<big>{:%A}</big>\n<span size='12000'>{calendar}</span>",
