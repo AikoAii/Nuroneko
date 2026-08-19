@@ -11,7 +11,7 @@ The environment is designed around modern Wayland workflows, keyboard-driven int
 > Future support for additional distributions may be explored as the project continues to evolve.
 
 <p align="center">
-  <img src=".meta/assets/logo.png" width="70%" alt="Nuroneko">
+  <img src=".meta/assets/logo.svg" width="70%" alt="Nuroneko">
 </p>
 
 <p align="center">
