@@ -1,0 +1,12 @@
+[SddmGreeterTheme]
+Name=NuroPix SDDM
+Description=A modern SDDM theme inspired by Google Pixel's Material You design.
+Author=AikoAii
+Copyright=(c) 2026 Nur Aiko
+License=MIT
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+Screenshot=.meta/main.png
+QtVersion=6
+X-SDDM-Theme-InterfaceVersion=2

@@ -79,6 +79,7 @@ safe_source "${DOTFILES_DIR}/scripts/install/install-packages.sh"
 safe_source "${DOTFILES_DIR}/scripts/install/backup.sh"
 safe_source "${DOTFILES_DIR}/scripts/install/deploy-configs.sh"
 safe_source "${DOTFILES_DIR}/scripts/install/deploy-assets.sh"
+safe_source "${DOTFILES_DIR}/scripts/install/sddm.sh"
 safe_source "${DOTFILES_DIR}/scripts/install/services.sh"
 safe_source "${DOTFILES_DIR}/scripts/install/permissions.sh"
 safe_source "${DOTFILES_DIR}/scripts/install/finalize.sh"
@@ -93,6 +94,7 @@ require_function install_packages
 require_function backup_configs
 require_function deploy_configs
 require_function deploy_assets
+require_function deploy_sddm_theme
 require_function enable_services
 require_function set_permissions
 require_function finalize_install
@@ -118,6 +120,7 @@ run_step install_packages
 run_step backup_configs
 run_step deploy_configs
 run_step deploy_assets
+run_step deploy_sddm_theme
 run_step enable_services
 run_step set_permissions
 run_step finalize_install
