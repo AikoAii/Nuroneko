@@ -3,6 +3,7 @@
 set -euo pipefail
 
 # Directories
+THEME_DIR="/usr/share/sddm/themes/NuroPix"
 WALL_DIR="$HOME/.local/share/wallpapers"
 CURRENT="$WALL_DIR/current"
 
