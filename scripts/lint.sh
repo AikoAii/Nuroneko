@@ -72,7 +72,9 @@ else
   ok "No secrets detected"
 fi
 
-if grep -rq "chikochi\|annur" "$REPO_DIR" \
+FORBIDDEN_IDENTIFIER_PATTERN="${FORBIDDEN_IDENTIFIER_PATTERN:-chikochi|annur}"
+
+if grep -rqE "$FORBIDDEN_IDENTIFIER_PATTERN" "$REPO_DIR" \
   --include="*.sh" --include="*.fish" --include="*.conf" --include="*.md" \
   --exclude="lint.sh" \
   2>/dev/null; then
