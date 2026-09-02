@@ -4,16 +4,16 @@
 detect_init() {
   info "Detecting init system..."
 
-  # --- Canonical systemd detection ---
+  # Canonical systemd check
   if [[ -d /run/systemd/system ]]; then
     export INIT_SYSTEM="systemd"
     ok "Init system: systemd"
     return 0
   fi
 
-  # --- Check PID 1 ---
+  # Check PID 1 or active init controls
   local init_bin
-  init_bin=$(readlink -f /sbin/init 2>/dev/null || echo "")
+  init_bin=$(readlink -f /sbin/init 2>/dev/null || readlink -f /proc/1/exe 2>/dev/null || echo "")
 
   if [[ "$init_bin" == *"systemd"* ]]; then
     export INIT_SYSTEM="systemd"
@@ -27,13 +27,9 @@ detect_init() {
     export INIT_SYSTEM="openrc"
     ok "Init system: openrc"
     return 0
-  elif [[ "$init_bin" == *"runit"* ]] || command -v sv >/dev/null 2>&1; then
-    export INIT_SYSTEM="runit"
-    ok "Init system: runit"
-    return 0
   fi
 
-  # --- Fallback: check /proc/1/comm ---
+  # Fallback: check /proc/1/comm
   local comm
   comm=$(cat /proc/1/comm 2>/dev/null || echo "")
 
@@ -53,13 +49,8 @@ detect_init() {
       ok "Init system: openrc"
       return 0
       ;;
-    runit)
-      export INIT_SYSTEM="runit"
-      ok "Init system: runit"
-      return 0
-      ;;
     *)
-      error "Unknown init system: $comm (supported: systemd, openrc, runit, dinit)"
+      error "Unsupported init system: ${comm:-unknown} (Supported init systems: systemd, openrc, dinit)"
       ;;
   esac
 }

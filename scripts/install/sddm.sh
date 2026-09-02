@@ -19,12 +19,22 @@ deploy_sddm_theme() {
     if command -v sudo >/dev/null 2>&1; then
       sudo_cmd="sudo"
     else
-      warn "Root privileges or sudo required to install SDDM theme"
+      warn "Root privileges or sudo required to install SDDM theme to /usr/share/sddm/themes"
       return 0
     fi
   fi
 
-  info "Installing NuroPix theme to $target_dir..."
+  if [[ "${DRY_RUN:-false}" == "true" ]]; then
+    printf "%b[DRY-RUN]%b  would execute (%s): copy SDDM theme to %s\n" "$CYAN" "$NC" "${sudo_cmd:-root}" "$target_dir"
+    printf "%b[DRY-RUN]%b  would execute (%s): configure default SDDM theme in %s\n" "$CYAN" "$NC" "${sudo_cmd:-root}" "$sddm_conf"
+    ok "[DRY-RUN] SDDM theme setup simulation complete"
+    return 0
+  fi
+
+  if [[ -n "$sudo_cmd" ]]; then
+    info "Executing privileged command (sudo) to install SDDM theme to $target_dir"
+  fi
+
   $sudo_cmd mkdir -p "/usr/share/sddm/themes" || {
     warn "Failed to create /usr/share/sddm/themes directory"
     return 0
@@ -36,7 +46,7 @@ deploy_sddm_theme() {
     return 0
   }
 
-  info "Configuring NuroPix as default SDDM theme..."
+  info "Configuring NuroPix as default SDDM theme in $sddm_conf..."
   $sudo_cmd mkdir -p "$sddm_conf_dir"
   printf "[Theme]\nCurrent=NuroPix\n" | $sudo_cmd tee "$sddm_conf" >/dev/null || {
     warn "Failed to write SDDM configuration to $sddm_conf"

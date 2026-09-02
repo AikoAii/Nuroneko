@@ -435,20 +435,18 @@ Review the warning message before taking action.
 
 # Getting Help
 
-Before reporting an issue, include:
+Before reporting an issue, run the Nuroneko Doctor diagnostic command:
 
-```bash id="u7sy5v"
+```bash
+./install.sh doctor
+```
+
+Copy the diagnostic summary along with:
+
+```bash
 fastfetch
-```
-
-```bash id="2t9f2v"
 hyprctl version
-```
-
-```bash id="2n45z7"
 pacman -Q hyprland
 ```
 
-and any relevant log output.
-
-This information makes troubleshooting significantly easier.
+This information makes troubleshooting significantly easier for GitHub issues.

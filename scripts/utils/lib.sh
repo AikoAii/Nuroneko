@@ -59,6 +59,12 @@ step() {
 # Dependency checks
 # ==============================================================
 
+require_function() {
+  declare -F "$1" >/dev/null 2>&1 || {
+    error "Missing required function: $1"
+  }
+}
+
 require() {
   local cmd="$1"
 
@@ -99,11 +105,21 @@ notify() {
 }
 
 # ==============================================================
-# Safe file helpers
+# Dry Run Execution Helpers
 # ==============================================================
 
-safe_symlink() {
+DRY_RUN="${DRY_RUN:-false}"
 
+dry_cmd() {
+  if [[ "${DRY_RUN:-false}" == "true" ]]; then
+    printf "%b[DRY-RUN]%b  would execute: %s\n" "$CYAN" "$NC" "$*"
+    return 0
+  else
+    "$@"
+  fi
+}
+
+safe_symlink() {
     local src="$1"
     local dst="$2"
 
@@ -116,21 +132,29 @@ safe_symlink() {
         return 1
     fi
 
+    if [[ "${DRY_RUN:-false}" == "true" ]]; then
+        printf "%b[DRY-RUN]%b  would symlink: %s -> %s\n" "$CYAN" "$NC" "$dst" "$src"
+        return 0
+    fi
+
     ln -sfn "$src" "$dst" \
         || error "Failed to create symlink: ${dst}"
 
     return 0
 }
 
-
 ensure_dir() {
-
   local dir="$1"
 
   if [[ ! -d "$dir" ]]; then
+    if [[ "${DRY_RUN:-false}" == "true" ]]; then
+      printf "%b[DRY-RUN]%b  would create directory: %s\n" "$CYAN" "$NC" "$dir"
+      return 0
+    fi
 
     mkdir -p "$dir" ||
       error "Failed to create directory: ${dir}"
   fi
 }
+
 

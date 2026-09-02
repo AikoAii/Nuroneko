@@ -1,17 +1,32 @@
 # Installation Guide
 
+## System Compatibility Matrix
+
+| Environment | Supported Status | Notes |
+| :--- | :--- | :--- |
+| **Arch Linux + systemd** | ✅ Supported | Default Arch configuration |
+| **Arch Linux + OpenRC** | 🟡 Experimental | Community init setup |
+| **Artix Linux + dinit** | ✅ Supported | Primary development target |
+| **Artix Linux + OpenRC** | ✅ Supported | Tested Artix init |
+| **Artix Linux + systemd** | ✅ Supported | Artix systemd suite |
+
+> [!NOTE]
+> `pacman` is required for automatic package deployment. Other distributions (Debian/Fedora) are not yet supported.
+
+---
+
 ## Requirements
 
 Before installing Nuroneko, ensure your system meets the following requirements:
 
 * Arch Linux or Artix Linux
-* `pacman`
-* `git`
-* `sudo` or `doas`
-* Internet connection
+* Required CLI tools: `bash`, `git`, `grep`, `sed`, `find`, `ln`, `mkdir`, `chmod`, `mv`, `readlink`
+* Package Manager: `pacman`
+* Privilege Escalation: `sudo` or `doas`
 
-> [!NOTE]
-> Other Linux distributions are not officially supported at this time.
+*Optional Tools:*
+* AUR helper: `yay` or `paru`
+* TUI Menu engine: `whiptail` or `dialog` (Falls back cleanly to text-based CLI menu if absent)
 
 ---
 
@@ -24,87 +39,58 @@ cd Nuroneko
 
 ---
 
-## Installation
+## Usage & Installation Commands
 
-### Standard Installation
+### Interactive Wizard (Recommended)
 
 ```bash
 ./install.sh
 ```
 
-Recommended for most users.
+Launches the interactive setup wizard allowing you to choose between:
+* **Full Setup:** Packages + Configs + SDDM Theme + Services
+* **Configs Only:** Only deploy dotfiles (`~/.config` & `~/.local`)
+* **Custom Selection:** Select granular components via checklist
 
-Configurations are copied to their target locations.
+### Dry-Run Mode (Simulation)
 
-### Development Installation
+```bash
+./install.sh --dry-run
+```
+
+Simulates the entire installation process in read-only mode without modifying files, installing packages, or changing system services.
+
+### Development Mode (Symlinks)
 
 ```bash
 ./install.sh --symlink
 ```
 
-Creates symbolic links instead of copying files.
+Creates symbolic links instead of copying configuration files.
 
-Useful when actively modifying configurations, as changes are reflected immediately without reinstalling.
+### System Diagnostics (Doctor)
 
----
+```bash
+./install.sh doctor
+```
 
-## What the Installer Does
-
-The installer automatically:
-
-1. Detects the distribution and init system
-2. Installs required packages
-3. Creates configuration backups
-4. Deploys configurations
-5. Configures supported services
-6. Applies required permissions
-7. Validates the installation
+Runs the standalone diagnostic tool to verify environment status, required/optional dependencies, active init system, service statuses, and broken symlinks.
 
 ---
 
 ## Backups
 
-Before deploying any configuration, Nuroneko creates a timestamped backup.
+Before deploying any configuration, Nuroneko creates a timestamped backup manifest:
 
 ```text
-~/.local/share/Nuroneko/backups/
+~/.local/share/nuroneko/backups/YYYY-MM-DD_HH-MM-SS/
 ```
 
-> [!IMPORTANT]
-> Existing configurations are never overwritten without first being backed up.
-
 ---
 
-## After Installation
+## Uninstallation & Troubleshooting
 
-After installation completes:
+If you encounter issues during installation or wish to troubleshoot:
 
-1. Log out and log back in
-2. Restart Hyprland if necessary
-3. Verify that all components start correctly
-
-Optional:
-
-* Run `fisher update` to refresh Fish plugins
-* Run `prefix + I` in tmux to install TPM plugins
-
----
-
-## Uninstallation
-
-Nuroneko does not provide an automated uninstall script.
-
-To restore your previous configuration:
-
-1. Open the backup directory
-2. Locate the desired backup snapshot
-3. Review `MANIFEST.txt`
-4. Restore the files you want to recover
-
----
-
-## Troubleshooting
-
-If you encounter issues during installation, see:
-
-* [Troubleshooting Guide](./troubleshooting.md)
+* Run `./install.sh doctor` to produce diagnostic logs for GitHub issues.
+* Review [Troubleshooting Guide](./troubleshooting.md)

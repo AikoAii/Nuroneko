@@ -9,69 +9,67 @@ deploy_configs() {
   # --- Deploy ~/.config/* ---
   if [[ -d "${DOTFILES_DIR}/configs/.config" ]]; then
     info "Deploying ~/.config configurations..."
-
     ensure_dir "${XDG_CONFIG_HOME:-$HOME/.config}"
 
     for src in "${DOTFILES_DIR}/configs/.config"/*; do
       [[ -e "$src" ]] || continue
-
       local name
       name=$(basename "$src")
       local dst="${XDG_CONFIG_HOME:-$HOME/.config}/$name"
 
       if [[ "$deploy_mode" == "symlink" ]]; then
-        # Symlink mode
         if safe_symlink "$src" "$dst"; then
           info "Symlinked: .config/$name"
           ((DEPLOYED_CONFIGS++)) || true
         fi
       else
-        # Copy mode (default)
         if [[ -e "$dst" || -L "$dst" ]]; then
           warn "Target exists, skipping: .config/$name (use backup if you need restore)"
         else
-          cp -r "$src" "$dst" || error "Failed to copy: .config/$name"
-          info "Copied: .config/$name"
+          if [[ "${DRY_RUN:-false}" == "true" ]]; then
+            printf "%b[DRY-RUN]%b  would copy: %s -> %s\n" "$CYAN" "$NC" "$src" "$dst"
+          else
+            cp -r "$src" "$dst" || error "Failed to copy: .config/$name"
+            info "Copied: .config/$name"
+          fi
           ((DEPLOYED_CONFIGS++)) || true
         fi
       fi
     done
-
-    ok "~/.config configurations deployed"
+    ok "~/.config configurations processed"
   fi
 
   # --- Deploy ~/.local/* ---
   if [[ -d "${DOTFILES_DIR}/configs/.local" ]]; then
     info "Deploying ~/.local configurations..."
-
     ensure_dir "$HOME/.local"
 
     for src in "${DOTFILES_DIR}/configs/.local"/*; do
       [[ -e "$src" ]] || continue
-
       local name
       name=$(basename "$src")
       local dst="$HOME/.local/$name"
 
       if [[ "$deploy_mode" == "symlink" ]]; then
-        # Symlink mode
         if safe_symlink "$src" "$dst"; then
           info "Symlinked: .local/$name"
           ((DEPLOYED_CONFIGS++)) || true
         fi
       else
-        # Copy mode (default)
         if [[ -e "$dst" || -L "$dst" ]]; then
           warn "Target exists, skipping: .local/$name"
         else
-          cp -r "$src" "$dst" || error "Failed to copy: .local/$name"
-          info "Copied: .local/$name"
+          if [[ "${DRY_RUN:-false}" == "true" ]]; then
+            printf "%b[DRY-RUN]%b  would copy: %s -> %s\n" "$CYAN" "$NC" "$src" "$dst"
+          else
+            cp -r "$src" "$dst" || error "Failed to copy: .local/$name"
+            info "Copied: .local/$name"
+          fi
           ((DEPLOYED_CONFIGS++)) || true
         fi
       fi
     done
-
-    ok "~/.local configurations deployed"
+    ok "~/.local configurations processed"
   fi
 
   # --- Deploy home files (directly into ~/) ---
@@ -80,30 +78,30 @@ deploy_configs() {
 
     for src in "${DOTFILES_DIR}/configs/home"/*; do
       [[ -e "$src" ]] || continue
-
       local name
       name=$(basename "$src")
       local dst="$HOME/$name"
 
       if [[ "$deploy_mode" == "symlink" ]]; then
-        # Symlink mode
         if safe_symlink "$src" "$dst"; then
           info "Symlinked: ~/$name"
           ((DEPLOYED_CONFIGS++)) || true
         fi
       else
-        # Copy mode (default)
         if [[ -e "$dst" || -L "$dst" ]]; then
           warn "Target exists, skipping: ~/$name"
         else
-          cp -r "$src" "$dst" || error "Failed to copy: ~/$name"
-          info "Copied: ~/$name"
+          if [[ "${DRY_RUN:-false}" == "true" ]]; then
+            printf "%b[DRY-RUN]%b  would copy: %s -> %s\n" "$CYAN" "$NC" "$src" "$dst"
+          else
+            cp -r "$src" "$dst" || error "Failed to copy: ~/$name"
+            info "Copied: ~/$name"
+          fi
           ((DEPLOYED_CONFIGS++)) || true
         fi
       fi
     done
-
-    ok "Home directory files deployed"
+    ok "Home directory files processed"
   fi
 
   ok "Configuration deployment complete"

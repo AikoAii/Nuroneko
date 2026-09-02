@@ -27,7 +27,16 @@ load_init_backend() {
         warn "Service management will be skipped."
 
         # --- Dummy fallbacks ---
+        service_exists() {
+            return 1
+        }
+
         enable_service() {
+            warn "Service management unavailable for INIT_SYSTEM=${INIT_SYSTEM}"
+            return 0
+        }
+
+        disable_service() {
             warn "Service management unavailable for INIT_SYSTEM=${INIT_SYSTEM}"
             return 0
         }
@@ -37,14 +46,19 @@ load_init_backend() {
             return 0
         }
 
+        stop_service() {
+            warn "Service management unavailable for INIT_SYSTEM=${INIT_SYSTEM}"
+            return 0
+        }
+
         restart_service() {
             warn "Service management unavailable for INIT_SYSTEM=${INIT_SYSTEM}"
             return 0
         }
 
-        stop_service() {
-            warn "Service management unavailable for INIT_SYSTEM=${INIT_SYSTEM}"
-            return 0
+        service_status() {
+            warn "Service status unavailable for INIT_SYSTEM=${INIT_SYSTEM}"
+            return 1
         }
     fi
 }

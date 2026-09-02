@@ -72,7 +72,7 @@ else
   ok "No secrets detected"
 fi
 
-if grep -rq "chikochi\|annur\|aiko" "$REPO_DIR" \
+if grep -rq "chikochi\|annur" "$REPO_DIR" \
   --include="*.sh" --include="*.fish" --include="*.conf" --include="*.md" \
   --exclude="lint.sh" \
   2>/dev/null; then

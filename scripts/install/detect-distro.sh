@@ -4,7 +4,6 @@
 detect_distro() {
   info "Detecting Linux distribution..."
 
-  # --- Read /etc/os-release ---
   if [[ ! -f /etc/os-release ]]; then
     error "Cannot detect OS: /etc/os-release not found"
   fi
@@ -13,20 +12,30 @@ detect_distro() {
   source /etc/os-release
 
   local detected_id="${ID:-unknown}"
+  local detected_like="${ID_LIKE:-}"
   local detected_name="${PRETTY_NAME:-Linux}"
 
-  # --- Validate supported distro ---
+  export DISTRO_NAME="$detected_name"
+
   case "$detected_id" in
     arch)
       export DISTRO="arch"
-      ok "Detected: $detected_name (Arch Linux)"
+      export DISTRO_FAMILY="arch"
+      ok "Detected distribution: $detected_name (Arch Linux)"
       ;;
     artix)
       export DISTRO="artix"
-      ok "Detected: $detected_name (Artix Linux)"
+      export DISTRO_FAMILY="arch"
+      ok "Detected distribution: $detected_name (Artix Linux)"
       ;;
     *)
-      error "Unsupported distribution: $detected_name (Only Arch and Artix are supported)"
+      if [[ "$detected_like" == *"arch"* ]]; then
+        export DISTRO="$detected_id"
+        export DISTRO_FAMILY="arch"
+        ok "Detected distribution: $detected_name (Arch-based)"
+      else
+        error "Unsupported distribution: $detected_name (Currently only Arch Linux and Artix Linux are supported)"
+      fi
       ;;
   esac
 }
