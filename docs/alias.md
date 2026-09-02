@@ -13,11 +13,12 @@ Common shortcuts for moving around the filesystem.
 Examples:
 
 ```bash
-..      # Parent directory
-...     # Two levels up
-....    # Three levels up
-h       # Home directory
-prev    # Previous directory
+c           # cd
+..          # Parent directory
+...         # Two levels up
+....        # Three levels up
+h           # Home directory (~)
+prev        # Previous directory
 ```
 
 ---
@@ -29,11 +30,16 @@ Aliases that improve file browsing and manipulation.
 Examples:
 
 ```bash
-ls      # Enhanced file listing
-l       # Detailed listing
-la      # Show hidden files
-lt      # Tree view
-yy      # Open Yazi
+ls          # eza --icons
+l           # Detailed listing with git
+la          # Show hidden files
+ll          # Long listing with git & icons
+lt          # Tree view (level 2)
+b           # Bat (file viewer)
+z           # Zoxide (smart directory jump)
+mk          # mkdir -pv
+drag        # Ripdrag (drag & drop)
+yy          # Open Yazi file manager
 ```
 
 These aliases use modern CLI tools such as:
@@ -51,9 +57,11 @@ Fast file and content discovery.
 Examples:
 
 ```bash
-rg      # Search text
-fd      # Find files
-ff      # Fuzzy search
+rg          # Ripgrep (smart-case search)
+rgi         # Ripgrep case-insensitive
+fd          # Find files (hidden & follow)
+fda         # FD absolute path
+ff          # Fuzzy search (fd | fzf)
 ```
 
 Powered by:
@@ -71,24 +79,35 @@ Convenience aliases for development workflows.
 Examples:
 
 ```bash
-n       # Neovim
-fast    # Fastfetch
-serve   # Local web server
+n           # Neovim
+m           # Micro editor
+py          # Python
+gpp         # G++ compiler
+fast        # Fastfetch
+serve       # Local Python web server
 ```
 
 ---
 
-## System
+## System & Network
 
-Common system administration shortcuts.
+Common System & Network administration shortcuts.
 
 Examples:
 
 ```bash
-top     # System monitor
-ports   # Listening ports
-psg     # Process viewer
-jctl    # System logs
+df          # Disk free (-h)
+du          # Dust disk usage (-d 2)
+dua         # Dust full usage
+top         # Btop system monitor
+free        # Free memory (-h)
+ip          # Colored IP output
+ports       # Listening ports (ss)
+ps          # Procs process viewer
+psg         # Procs watch live
+ssh         # Kitty kitten SSH
+pi          # Gping network test
+curl        # Curlie HTTP client
 ```
 
 ---
@@ -100,10 +119,12 @@ Package management shortcuts for Arch Linux.
 Examples:
 
 ```bash
-update      # System upgrade
-searchpkg   # Search packages
-remove      # Remove package
-cleanpkg    # Clean cache
+:v          # System upgrade (sudo pacman -Syu)
+p           # Pacman
+qi          # Package info
+qs          # Search installed packages
+rm-pkg      # Remove package & orphans (Rns)
+cleanpkg    # Clean cache (-Sc)
 ```
 
 ---
@@ -115,11 +136,21 @@ Frequently used Git commands with shorter aliases.
 Examples:
 
 ```bash
-gs      # git status
-ga      # git add
-gcm     # git commit -m
-gp      # git push
-glog    # git log graph
+g           # git
+gs          # git status
+ga          # git add .
+gA          # git add -A
+gc          # git commit
+gcm         # git commit -m
+gp          # git push
+gl          # git pull
+gd          # git diff
+gb          # git branch
+gco         # git checkout
+gcl         # git clone
+glog        # Git log graph
+gundo       # Soft reset last commit (HEAD~1)
+gclean      # Clean untracked files (-fd)
 ```
 
 ---
@@ -145,9 +176,10 @@ Nuroneko includes several typo guards that redirect common mistakes to the inten
 Examples:
 
 ```bash
-sl      # ls
-cim     # nvim
-chmox   # chmod
+sl          # ls
+cim         # nvim
+chmox       # chmod
+grpe        # grep
 ```
 
 ---

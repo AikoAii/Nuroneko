@@ -47,8 +47,6 @@ alias ip="ip -c"
 alias ports="ss -tulnp"
 alias ps="procs"
 alias psg="procs --watch"
-alias pw="loginctl poweroff"
-alias rbt="loginctl reboot"
 
 # NETWORK / SSH
 alias ssh="kitty +kitten ssh"
@@ -60,6 +58,7 @@ alias fast="fastfetch"
 alias serve="python -m http.server"
 
 # PACMAN (ARCH)
+alias :v="sudo pacman -Syu"
 alias p="pacman"
 alias qi="pacman -Qi"
 alias qs="pacman -Qs"
