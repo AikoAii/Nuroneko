@@ -2,13 +2,7 @@
 
 Nuroneko is a modular Hyprland environment for people who want a complete Arch Linux or Artix Linux desktop without manually assembling and maintaining dozens of separate configurations.
 
-It provides a cohesive desktop workflow around Hyprland, including application launching, notifications, clipboard management, OCR utilities, screenshots, scratchpads, power management, shell tooling, and desktop integration. The project combines configuration, tooling, deployment, and workflow into a single maintainable environment instead of a collection of unrelated dotfiles.
-
-The environment is designed around modern Wayland workflows, keyboard-driven interaction, and long-term maintainability. Configuration deployment, service integration, backups, and validation are handled automatically through the provided installer.
-
-> [!IMPORTANT]
-> Arch Linux and Artix Linux are currently the primary supported platforms.
-> Future support for additional distributions may be explored as the project continues to evolve.
+It provides a cohesive desktop workflow around Hyprland, including application launching, notifications, clipboard management, OCR utilities, screenshots, scratchpads, power management, shell tooling, SDDM theme integration, and desktop integration.
 
 <p align="center">
   <img src=".meta/assets/logo.svg" width="70%" alt="Nuroneko">
@@ -23,10 +17,6 @@ The environment is designed around modern Wayland workflows, keyboard-driven int
     <img src="https://img.shields.io/github/stars/AikoAii/nuroneko?style=for-the-badge&logo=github" alt="GitHub Stars" />
   </a>
 
-  <!-- <a href="./docs">
-    <img src="https://img.shields.io/badge/Documentation-Available-blue?style=for-the-badge&logo=gitbook" alt="Documentation" />
-  </a> -->
-
   <a href="./LICENSE">
     <img src="https://img.shields.io/github/license/AikoAii/nuroneko?style=for-the-badge" alt="License" />
   </a>
@@ -34,8 +24,7 @@ The environment is designed around modern Wayland workflows, keyboard-driven int
 
 <p align="center">
   <a href="#why-nuroneko">Why Nuroneko</a> •
-  <a href="#what-it-includes">What It Includes?</a> •
-  <a href="#supported-systemsYou Get</a> •
+  <a href="#what-it-includes">What It Includes</a> •
   <a href="#preview">Preview</a> •
   <a href="#installation">Installation</a> •
   <a href="#documentation">Documentation</a>
@@ -49,13 +38,7 @@ Many Hyprland setups focus primarily on appearance.
 
 While visually impressive, they often require users to manually maintain independent configurations for launchers, notifications, screenshots, clipboard utilities, shell environments, status bars, and supporting scripts.
 
-Over time, this can result in fragmented workflows, duplicated configuration, and increasing maintenance overhead.
-
-Nuroneko approaches the desktop differently.
-
-Rather than treating each component as a separate system, it provides a curated environment where common workflows are already integrated and designed to work together consistently.
-
-The goal is not only to provide a visually cohesive desktop, but also to provide a desktop that remains easy to understand, extend, and maintain over time.
+Nuroneko approaches the desktop differently. Rather than treating each component as a separate system, it provides a curated environment where common workflows are integrated and designed to work together consistently across multiple init systems.
 
 ---
 
@@ -67,47 +50,17 @@ Nuroneko provides a complete workflow around Hyprland, including:
 * Clipboard history and clipboard utilities
 * OCR and screenshot workflows
 * Notification center and on-screen displays
-* Scratchpad workflows
-* Power profile management
+* Scratchpad workflows and power profile management
 * Wallpaper and appearance integration
-* Terminal and shell tooling
-* Development-oriented command-line utilities
-* Safe configuration deployment and backup management
+* SDDM Display Manager integration (**NuroPix** theme)
+* Terminal and shell tooling (Fish, Neovim, Starship, Yazi, Btop)
 
-The project also includes an installation framework capable of:
+The project also includes an installation framework featuring:
 
-* Detecting supported distributions
-* Detecting supported init systems
-* Installing required packages
-* Creating configuration backups
-* Deploying configurations safely
-* Applying service configuration
-* Validating installation results
-
----
-
-## Supported Systems
-
-Nuroneko currently supports:
-
-| Distribution | Init Systems         |
-| ------------ | -------------------- |
-| Arch Linux   | systemd              |
-| Artix Linux  | OpenRC, runit, dinit |
-
-Init-specific service configuration is handled automatically during installation when supported.
-
----
-
-## Scope
-
-Nuroneko is an environment and workflow layer built around Hyprland.
-
-It provides desktop integration, workflow tooling, shell configuration, utility integration, deployment tooling, and desktop customization.
-
-Nuroneko does not replace the responsibilities of the Linux distribution itself, nor does it attempt to replace dedicated applications such as web browsers, development environments, office software, or media applications.
-
-Users remain free to choose their preferred applications while benefiting from a consistent underlying desktop workflow.
+* **Interactive Setup Wizard:** Menu engine using `whiptail`, `dialog`, or clean Bash CLI fallback
+* **Multi-Init Integration:** Safe service management across `systemd`, `OpenRC`, and `dinit`
+* **Safe Backups & Simulation:** Non-destructive deployment with timestamped backups & `--dry-run` simulation mode
+* **Diagnostics Tool:** Standalone health & dependency checker (`./install.sh doctor`)
 
 ---
 
@@ -146,26 +99,32 @@ git clone https://github.com/AikoAii/Nuroneko.git ~/.config/Nuroneko
 cd ~/.config/Nuroneko
 ```
 
-Standard installation:
+Standard installation (Interactive Wizard):
 
 ```bash
 ./install.sh
 ```
 
-Development installation:
+Simulation mode (Read-only Dry-Run):
+
+```bash
+./install.sh --dry-run
+```
+
+Development installation (Symlinks):
 
 ```bash
 ./install.sh --symlink
 ```
 
+System diagnostics & health check:
+
+```bash
+./install.sh doctor
+```
+
 > [!NOTE]
-> Existing configurations are automatically backed up before deployment.
->
-> Backup archives are stored in:
->
-> ```text
-> ~/.local/share/Nuroneko/backups/
-> ```
+> Existing configurations are automatically backed up before deployment to `~/.local/share/nuroneko/backups/`.
 
 ---
 
@@ -179,11 +138,7 @@ Additional documentation is available for:
 - [Shell Functions](./docs/functions.md)
 - [Troubleshooting](./docs/troubleshooting.md)
 
-Quick keybinding reference can be opened from within the desktop environment:
-
-```text
-SUPER + /
-```
+Quick keybinding reference inside desktop: `SUPER + /`
 
 ---
 
@@ -215,8 +170,6 @@ Nuroneko builds upon the work of many open-source projects and communities that 
     <img src="https://ko-fi.com/img/githubbutton_sm.svg" height="40" alt="Ko-fi"/>
   </a>
 </p>
-
----
 
 ## License
 
