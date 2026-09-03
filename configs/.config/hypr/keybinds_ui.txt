@@ -1,99 +1,130 @@
 󰆍 SYSTEM / APPS
 SUPER  + ENTER          →  Terminal
 SUPER  + D              →  Launcher
-SUPER  + Z              →  Browser
+SUPER  + B              →  Browser
 SUPER  + E              →  Files
+SUPER  + SHIFT + E      →  Terminal File Manager
 SUPER  + C              →  Editor
-SUPER  + I              →  Notes
-SUPER  + A              →  Audio Control
+SUPER  + SHIFT + N      →  Notes
+SUPER  + SHIFT + A      →  Audio Control
 
 CTRL   + SHIFT + ESC    →  System Monitor
 
-󰘳 WINDOW
+
+󰘳 WINDOW MANAGEMENT
 SUPER  + Q              →  Kill Window
 SUPER  + SPACE          →  Toggle Float
 ALT    + ENTER          →  Fullscreen
-
 SUPER  + P              →  Toggle Pseudo
 SUPER  + J              →  Toggle Split
 SUPER  + G              →  Toggle Group
-
 SUPER  + U              →  Focus Urgent
-SUPER  + TAB            →  Previous Workspace
+
+
+󰖳 FOCUS / RESIZE / MOVE
+SUPER  + ← → ↑ ↓
+                        →  Move Focus
+
+SUPER  + SHIFT + ← → ↑ ↓
+                        →  Resize Window
+
+SUPER  + CTRL + SHIFT + ← → ↑ ↓
+                        →  Move Window
+
 
 󰘶 WORKSPACE
-SUPER  + [1-0]          →  Switch Workspace
-SUPER  + ⇧ + [1-0]      →  Move Window
+SUPER  + TAB            →  Previous Workspace
+SUPER  + [1–0]          →  Switch Workspace
+SUPER  + SHIFT + [1–0]  →  Move Window to Workspace
 
 SUPER  + CTRL + →       →  Next Workspace
 SUPER  + CTRL + ←       →  Previous Workspace
 SUPER  + CTRL + ↓       →  Empty Workspace
 
+
 󰌌 SCRATCHPAD
 SUPER  + S              →  Toggle Scratchpad
-SUPER  + ⇧ + S          →  Send to Scratchpad
+SUPER  + SHIFT + S      →  Send Window to Scratchpad
 SUPER  + T              →  Scratchpad Terminal
+SUPER  + M              →  Scratchpad Music
 
-󰖨 SCREENSHOT
+
+󰖨 SCREENSHOT / OCR
 Print                   →  Full Screenshot
-⇧ + Print               →  Region Screenshot
-SUPER + O               →  OCR Copy
+SHIFT + Print           →  Region Screenshot
+CTRL  + Print           →  Active Window Screenshot
+SUPER  + O              →  OCR Copy
+
+
+󰖟 WALLPAPER
+SUPER  + W              →  Wallpaper Selector
+SUPER  + SHIFT + W      →  Random Wallpaper
+
 
 󰣇 CLIPBOARD / UTILITIES
 SUPER  + V              →  Clipboard History
-SUPER  + ⇧ + V          →  Clear Clipboard
-
+SUPER  + SHIFT + V      →  Clear Clipboard
 SUPER  + .              →  Emoji Picker
 SUPER  + /              →  Keybind Cheat Sheet
 SUPER  + K              →  Color Picker
+SUPER  + =              →  Calculator
+
 
 󰘵 NOTIFICATIONS
 SUPER  + N              →  Toggle Notifications
-SUPER  + ⇧ + N          →  Notification Center
+SUPER  + CTRL + SHIFT + N
+                        →  Notification Center
 SUPER  + CTRL + N       →  Clear Notifications
 
+
 󰐥 SESSION / POWER
-SUPER  + ⇧ + L          →  Lock Screen
-
 SUPER  + ESC            →  Power Menu
+SUPER  + SHIFT + L      →  Lock Screen
 SUPER  + CTRL + R       →  Reload Hyprland
+SUPER  + SHIFT + B      →  Restart Waybar
 
-SUPER  + B              →  Toggle Waybar
+SUPER  + CTRL + SHIFT + Q
+                        →  Exit Session
 
-SUPER  + CTRL + ⇧ + Q   →  Exit Session
-SUPER  + CTRL + ⇧ + S   →  Shutdown
-SUPER  + CTRL + ⇧ + R   →  Reboot
-SUPER  + CTRL + ⇧ + P   →  Suspend
+SUPER  + CTRL + SHIFT + S
+                        →  Shutdown
+
+SUPER  + CTRL + SHIFT + R
+                        →  Reboot
+
+SUPER  + CTRL + SHIFT + P
+                        →  Suspend
+
 
 󰕾 AUDIO
 Volume Up / Down        →  Adjust Volume
 Mute                    →  Toggle Audio
 Mic Mute                →  Toggle Microphone
 
+
 󰃠 BRIGHTNESS
 Brightness Up / Down    →  Adjust Brightness
+
 
 󰎆 MEDIA
 Play / Pause            →  Toggle Playback
 Next                    →  Next Track
 Previous                →  Previous Track
 
+
 󰌵 POWER PROFILES
 SUPER  + F1             →  Power Saver
 SUPER  + F2             →  Balanced
-SUPER  + F3             →  Daily
-SUPER  + F4             →  Performance
+SUPER  + F3             →  Performance
+
 
 󰌪 HYPRSHADE
 SUPER  + F9             →  Blue Light Filter
 SUPER  + F10            →  Vibrance
-SUPER  + ⇧ + F10        →  Disable Shaders
+SUPER  + SHIFT + F10    →  Disable Shaders
 
-󰖳 FOCUS
-SUPER  + ← → ↑ ↓        →  Move Focus
 
 󰆧 MOUSE
 SUPER  + Scroll         →  Switch Workspace
-
 SUPER  + Left Click     →  Move Window
 SUPER  + Right Click    →  Resize Window
