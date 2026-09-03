@@ -1,381 +1,366 @@
-/* ============================================================
- *  PALETTE
- * ============================================================ */
+/* Palette */
 
-@define-color bar-bg             rgba(0, 0, 0, 0);
+@define-color bar-bg rgba(0, 0, 0, 0);
 
-@define-color surface            rgba(28, 29, 36, 0.94);
-@define-color surface-2          rgba(35, 37, 45, 0.96);
-@define-color surface-hover      rgba(48, 50, 61, 0.98);
+@define-color surface rgba(28, 29, 36, 0.94);
+@define-color surface-2 rgba(35, 37, 45, 0.96);
+@define-color surface-hover rgba(48, 50, 61, 0.98);
 
-@define-color outline            rgba(230, 228, 240, 0.08);
-@define-color outline-hover      rgba(230, 228, 240, 0.13);
+@define-color outline rgba(230, 228, 240, 0.08);
+@define-color outline-hover rgba(230, 228, 240, 0.13);
 
-@define-color fg                  #e8e6ef;
-@define-color subtext             #b8bac6;
-@define-color muted               #858895;
+@define-color fg #e8e6ef;
+@define-color subtext #b8bac6;
+@define-color muted #858895;
 
-@define-color primary             #d8c7ff;
-@define-color primary-soft       rgba(216, 199, 255, 0.14);
-@define-color primary-strong     rgba(216, 199, 255, 0.22);
-@define-color on-primary          #352e46;
+@define-color primary #d8c7ff;
+@define-color primary-soft rgba(216, 199, 255, 0.14);
+@define-color primary-strong rgba(216, 199, 255, 0.22);
+@define-color on-primary #352e46;
 
-@define-color blue                #a9c8ff;
-@define-color green               #b8dcb0;
-@define-color teal                #a9d8d0;
-@define-color warning             #e9ca8e;
-@define-color critical            #f0b6b2;
+@define-color blue #a9c8ff;
+@define-color green #b8dcb0;
+@define-color teal #a9d8d0;
+@define-color warning #e9ca8e;
+@define-color critical #f0b6b2;
 
 
-/* ============================================================
- *  BASE
- * ============================================================ */
+/* Base */
 
 * {
-    border: none;
-    border-radius: 0;
+  border: none;
+  border-radius: 0;
 
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 12px;
-    font-weight: 700;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 12px;
+  font-weight: 700;
 
-    min-height: 0;
+  min-height: 0;
 
-    transition:
-        background-color 180ms ease,
-        color 180ms ease,
-        border-color 180ms ease,
-        opacity 180ms ease;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease;
 }
 
 window#waybar {
-    background: @bar-bg;
-    color: @fg;
+  background: @bar-bg;
+  color: @fg;
 }
 
 
-/* ============================================================
- *  TOOLTIP
- * ============================================================ */
+/* Tooltip */
 
 tooltip {
-    background: rgba(24, 25, 31, 0.98);
+  background: rgba(24, 25, 31, 0.98);
+  color: @fg;
 
-    color: @fg;
+  border: 1px solid @outline;
+  border-radius: 16px;
 
-    border: 1px solid @outline;
-    border-radius: 16px;
-
-    padding: 9px 10px;
+  padding: 9px 10px;
 }
 
 tooltip label {
-    color: @fg;
+  color: @fg;
 }
 
 tooltip #calendar {
-    padding: 4px;
+  padding: 4px;
 }
 
 tooltip #calendar .month {
-    color: @primary;
-    font-size: 13px;
+  color: @primary;
+  font-size: 13px;
 }
 
 tooltip #calendar .header {
-    color: @subtext;
+  color: @subtext;
 }
 
 tooltip #calendar .today {
-    color: @critical;
-    text-decoration: underline;
+  color: @critical;
+  text-decoration: underline;
 }
 
 
-/* ============================================================
- *  SHARED SURFACES
- * ============================================================ */
+/* Capsules */
 
 #tray,
 #workspaces,
 #custom-media,
 #custom-cava,
+#custom-network-traffic,
 #system-info,
 #system-levels,
 #keyboard,
 #time,
 #control-panel {
+  background: @surface;
 
-    background: @surface;
+  border: 1px solid @outline;
+  border-radius: 18px;
 
-    border: 1px solid @outline;
-    border-radius: 18px;
-
-    margin: 6px 4px;
-
-    min-height: 26px;
-
-    padding: 0 11px;
+  margin: 6px 4px;
+  min-height: 26px;
+  padding: 0 11px;
 }
 
 #tray:hover,
 #workspaces:hover,
 #custom-media:hover,
 #custom-cava:hover,
+#custom-network-traffic:hover,
 #system-info:hover,
 #system-levels:hover,
 #keyboard:hover,
 #time:hover,
 #control-panel:hover {
-
-    background: @surface-hover;
-
-    border-color: @outline-hover;
+  background: @surface-hover;
+  border-color: @outline-hover;
 }
 
 
-/* ============================================================
- *  LEFT — TRAY
- * ============================================================ */
+/* Tray */
 
 #tray {
-    margin-left: 10px;
-    padding: 0 9px;
+  margin-left: 10px;
+  padding: 0 9px;
 }
 
 #tray > widget,
 #tray > .passive,
 #tray > .active,
 #tray > .needs-attention {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 
 #tray image {
-    padding: 0 3px;
+  padding: 0 3px;
 }
 
 
-/* ============================================================
- *  LEFT — WORKSPACES
- * ============================================================ */
+/* Workspaces */
 
 #workspaces {
-    padding: 0 5px;
+  padding: 0 5px;
 }
 
 #workspaces button {
-    background: transparent;
+  background: transparent;
+  color: @muted;
 
-    color: @muted;
+  box-shadow: none;
+  text-shadow: none;
 
-    box-shadow: none;
-    text-shadow: none;
+  min-width: 18px;
 
-    min-width: 18px;
+  margin: 3px 2px;
+  padding: 0 4px;
 
-    margin: 3px 2px;
-    padding: 0 4px;
-
-    border-radius: 13px;
+  border-radius: 13px;
 }
 
 #workspaces button.active {
-    background: @primary;
-    color: @on-primary;
+  background: @primary;
+  color: @on-primary;
 
-    min-width: 25px;
-
-    padding: 0 6px;
+  min-width: 25px;
+  padding: 0 6px;
 }
 
 #workspaces button:hover {
-    background: @primary-soft;
-    color: @fg;
+  background: @primary-soft;
+  color: @fg;
 }
 
 #workspaces button.urgent {
-    color: @critical;
-    background: rgba(240, 182, 178, 0.10);
+  color: @critical;
+  background: rgba(240, 182, 178, 0.10);
 }
 
 
-/* ============================================================
- *  LEFT — MEDIA
- * ============================================================ */
+/* Media */
 
 #custom-media {
-    color: @primary;
+  color: @primary;
+  font-weight: 800;
 
-    font-weight: 800;
-
-    padding: 0 12px;
-
-    min-width: 18px;
+  padding: 0 12px;
+  min-width: 18px;
 }
 
 #custom-media:hover {
-    background: @primary-soft;
-    border-color: rgba(216, 199, 255, 0.18);
+  color: @primary;
 }
 
 #custom-media.muted {
-    color: @muted;
+  color: @muted;
 }
 
 
-/* ============================================================
- *  LEFT — CAVA
- * ============================================================ */
+/* Cava */
 
 #custom-cava {
-    color: @blue;
+  color: @blue;
 
-    font-size: 11px;
-    letter-spacing: 1px;
+  font-size: 11px;
+  letter-spacing: 1px;
 
-    padding: 0 10px;
-
-    min-width: 20px;
+  padding: 0 10px;
+  min-width: 20px;
 }
 
 #custom-cava:hover {
-    color: @primary;
+  color: @primary;
 }
 
 #custom-cava.hidden {
-    background: transparent;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
 
-    border-color: transparent;
+  min-width: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
 
-    color: transparent;
-
-    min-width: 0;
-
-    margin-left: 0;
-    margin-right: 0;
-
-    padding: 0;
-
-    opacity: 0;
+  opacity: 0;
 }
 
 
-/* ============================================================
- *  CENTER — SYSTEM INFO
- * ============================================================ */
+/* Network Traffic */
+
+#custom-network-traffic {
+  color: @teal;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  padding: 0 10px;
+  min-width: 110px;
+}
+
+#custom-network-traffic:hover {
+  color: @primary;
+}
+
+#custom-network-traffic.offline {
+  color: @muted;
+}
+
+#custom-network-traffic.critical {
+  color: @critical;
+  background: rgba(240, 182, 178, 0.08);
+}
+
+
+/* System Info */
 
 #system-info {
-    padding: 0 12px;
+  padding: 0 12px;
 }
 
 #custom-cpu,
 #custom-ram,
 #custom-temp {
-    margin: 0 8px;
-    padding: 0;
+  margin: 0 8px;
+  padding: 0;
 }
 
 #custom-cpu {
-    color: @blue;
+  color: @blue;
 }
 
 #custom-ram {
-    color: @green;
+  color: @green;
 }
 
 #custom-temp {
-    color: @warning;
+  color: @warning;
 }
 
 
-/* ============================================================
- *  RIGHT — SYSTEM LEVELS
- * ============================================================ */
+/* System Levels */
 
 #system-levels {
-    padding: 0 12px;
+  padding: 0 12px;
 }
 
 #custom-brightness,
 #custom-battery,
 #custom-volume,
 #custom-microphone {
-    margin: 0 7px;
-    padding: 0;
+  margin: 0 7px;
+  padding: 0;
 }
 
 #custom-brightness {
-    color: @warning;
+  color: @warning;
 }
 
 #custom-battery {
-    color: @green;
+  color: @green;
 }
 
 #custom-volume {
-    color: @primary;
+  color: @primary;
 }
 
 #custom-microphone {
-    color: @teal;
+  color: @teal;
 }
 
 
-/* ============================================================
- *  RIGHT — KEYBOARD
- * ============================================================ */
+/* Keyboard */
 
 #keyboard {
-    padding: 0 9px;
+  padding: 0 9px;
 }
 
 #keyboard #hyprland-language {
-    color: @primary;
-
-    margin: 0 4px;
+  color: @primary;
+  margin: 0 4px;
 }
 
 #keyboard #custom-capslock {
-    color: @warning;
-
-    margin-left: 5px;
+  color: @warning;
+  margin-left: 5px;
 }
 
 
-/* ============================================================
- *  RIGHT — TIME
- * ============================================================ */
+/* Time */
 
 #time {
-    padding: 0 13px;
+  padding: 0 13px;
 }
 
 #time #idle_inhibitor {
-    color: @primary;
-
-    margin-right: 7px;
+  color: @primary;
+  margin-right: 7px;
 }
 
 #time #clock {
-    color: @fg;
+  color: @fg;
 
-    font-size: 13px;
-    font-weight: 800;
+  font-size: 13px;
+  font-weight: 800;
 
-    letter-spacing: 0.3px;
+  letter-spacing: 0.3px;
+  padding: 0 2px;
+}
 
-    padding: 0 2px;
+#time:hover #clock {
+  color: @primary;
 }
 
 
-/* ============================================================
- *  RIGHT — CONTROL PANEL
- * ============================================================ */
+/* Control Panel */
 
 #control-panel {
-    margin-right: 10px;
-
-    padding: 0 9px;
+  margin-right: 10px;
+  padding: 0 9px;
 }
 
 #custom-system-update,
@@ -383,207 +368,162 @@ tooltip #calendar .today {
 #custom-bluetooth,
 #custom-networkmanager,
 #custom-power {
-
-    margin: 0 6px;
-    padding: 0;
+  margin: 0 6px;
+  padding: 0;
 }
 
 #custom-system-update {
-    color: @warning;
+  color: @warning;
 }
 
 #custom-do-not-disturb {
-    color: @subtext;
+  color: @subtext;
 }
 
 #custom-bluetooth {
-    color: @teal;
+  color: @teal;
 }
 
 #custom-networkmanager {
-    color: @blue;
+  color: @blue;
 }
 
 #custom-power {
-    color: @critical;
+  color: @critical;
 }
 
 
-/* ============================================================
- *  NETWORK
- * ============================================================ */
+/* Network */
 
 #custom-networkmanager.connected {
-    color: @blue;
+  color: @blue;
 }
 
 #custom-networkmanager.critical,
 #custom-networkmanager.offline {
-    color: @critical;
+  color: @critical;
 
-    background: rgba(240, 182, 178, 0.08);
-
-    border-radius: 11px;
-
-    padding: 0 7px;
+  background: rgba(240, 182, 178, 0.08);
+  border-radius: 11px;
+  padding: 0 7px;
 }
 
 
-/* ============================================================
- *  BLUETOOTH
- * ============================================================ */
+/* Bluetooth */
 
 #custom-bluetooth.connected {
-    color: @blue;
+  color: @blue;
 }
 
 #custom-bluetooth.off {
-    color: @muted;
+  color: @muted;
 }
 
 
-/* ============================================================
- *  AUDIO STATES
- * ============================================================ */
+/* Audio */
 
 #custom-volume.muted,
 #custom-microphone.muted {
+  color: @critical;
 
-    color: @critical;
-
-    background: rgba(240, 182, 178, 0.12);
-
-    border-radius: 11px;
-
-    padding: 0 7px;
+  background: rgba(240, 182, 178, 0.12);
+  border-radius: 11px;
+  padding: 0 7px;
 }
 
 #custom-volume.warning,
 #custom-microphone.warning {
-    color: @warning;
+  color: @warning;
 }
 
 
-/* ============================================================
- *  DO NOT DISTURB
- * ============================================================ */
+/* DND */
 
 #custom-do-not-disturb.enabled {
+  color: @critical;
 
-    color: @critical;
-
-    background: rgba(240, 182, 178, 0.12);
-
-    border-radius: 11px;
-
-    padding: 0 7px;
+  background: rgba(240, 182, 178, 0.12);
+  border-radius: 11px;
+  padding: 0 7px;
 }
 
 #custom-do-not-disturb.disabled {
-    color: @green;
+  color: @green;
 }
 
 
-/* ============================================================
- *  SYSTEM UPDATE
- * ============================================================ */
+/* Updates */
 
-#custom-system-update.warning,
-#custom-system-update {
-    color: @warning;
+#custom-system-update,
+#custom-system-update.warning {
+  color: @warning;
 }
 
 
-/* ============================================================
- *  BATTERY STATES
- * ============================================================ */
+/* Battery */
 
 #custom-battery.warning {
-    color: @warning;
+  color: @warning;
 }
 
 #custom-battery.charging {
+  color: @green;
 
-    color: @green;
+  background: rgba(184, 220, 176, 0.12);
+  border-radius: 11px;
+  padding: 0 7px;
 
-    background: rgba(184, 220, 176, 0.12);
-
-    border-radius: 11px;
-
-    padding: 0 7px;
-
-    animation: battery-pulse 2.8s ease-in-out infinite;
+  animation: battery-pulse 2.8s ease-in-out infinite;
 }
 
 #custom-battery.critical {
+  color: @critical;
 
-    color: @critical;
+  background: rgba(240, 182, 178, 0.12);
+  border-radius: 11px;
+  padding: 0 7px;
 
-    background: rgba(240, 182, 178, 0.12);
-
-    border-radius: 11px;
-
-    padding: 0 7px;
-
-    animation: battery-blink 1.6s ease infinite;
+  animation: battery-blink 1.6s ease infinite;
 }
 
 
-/* ============================================================
- *  POWER
- * ============================================================ */
+/* Power */
 
 #custom-power:hover {
+  color: @critical;
 
-    color: @critical;
-
-    background: rgba(240, 182, 178, 0.10);
-
-    border-radius: 11px;
-
-    padding: 0 7px;
+  background: rgba(240, 182, 178, 0.10);
+  border-radius: 11px;
+  padding: 0 7px;
 }
 
 
-/* ============================================================
- *  CLOCK INTERACTION
- * ============================================================ */
-
-#time:hover #clock {
-    color: @primary;
-}
-
-
-/* ============================================================
- *  SUBTLE ANIMATIONS
- * ============================================================ */
+/* Animations */
 
 @keyframes battery-blink {
+  0% {
+    opacity: 1;
+  }
 
-    0% {
-        opacity: 1;
-    }
+  50% {
+    opacity: 0.45;
+  }
 
-    50% {
-        opacity: 0.45;
-    }
-
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes battery-pulse {
+  0% {
+    opacity: 0.90;
+  }
 
-    0% {
-        opacity: 0.90;
-    }
+  50% {
+    opacity: 1;
+  }
 
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.90;
-    }
+  100% {
+    opacity: 0.90;
+  }
 }
