@@ -6,11 +6,10 @@
   "control-center-layer": "overlay",
 
   "control-center-exclusive-zone": false,
+  "layer-shell-cover-screen": false,
 
-  "notification-window-width": 360,
-  "control-center-width": 390,
-
-  "notification-icon-size": 44,
+  "notification-window-width": 380,
+  "control-center-width": 410,
 
   "timeout": 5,
   "timeout-low": 3,
@@ -19,10 +18,12 @@
   "fit-to-screen": true,
 
   "control-center-margin-top": 10,
-  "control-center-margin-right": 10,
+  "control-center-margin-right": 12,
   "control-center-margin-bottom": 10,
 
-  "notification-grouping": true,
+  "notification-grouping": false,
+
+  "cssPriority": "user",
 
   "widgets": [
     "title",
@@ -30,18 +31,19 @@
     "backlight",
     "volume",
     "mpris",
+    "dnd",
     "notifications"
   ],
 
   "widget-config": {
     "title": {
-      "text": "Control Center",
+      "text": "Notifications",
       "clear-all-button": true,
       "button-text": "Clear"
     },
 
     "buttons-grid": {
-      "buttons-per-row": 3,
+      "buttons-per-row": 2,
 
       "actions": [
         {
@@ -63,16 +65,6 @@
           "type": "toggle",
           "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && swaync-client --dnd-on || swaync-client --dnd-off'",
           "update-command": "sh -c 'swaync-client --get-dnd | grep -q true && echo true || echo false'"
-        },
-
-        {
-          "label": "󰹑",
-          "command": "grim - | wl-copy"
-        },
-
-        {
-          "label": "󰍉",
-          "command": "rofi -show drun"
         },
 
         {
@@ -98,6 +90,10 @@
       "autohide": true,
       "show-album-art": "when-available",
       "loop-carousel": false
+    },
+
+    "dnd": {
+      "text": "Do Not Disturb"
     },
 
     "notifications": {
