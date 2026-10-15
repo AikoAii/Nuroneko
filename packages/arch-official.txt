@@ -1,4 +1,4 @@
-wbash
+bash
 coreutils
 findutils
 gawk
