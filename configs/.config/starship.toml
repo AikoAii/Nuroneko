@@ -1,168 +1,268 @@
-format = """\
-[╭╴](fg:arrow)\
-$username\
-$os\
-$git_branch\
-(\
-    at \
-    $directory\
-)\
-$fill $cmd_duration $time\
-(\
-    via \
-    $python\
-    $conda\
-    $nodejs\
-    $c\
-    $rust\
-    $java\
-)
-[╰─](fg:arrow)$character\
-"""
-# Add the modules you need
-
-# Disable the blank line at the start of the prompt
+"$schema" = "https://starship.rs/config-schema.json"
 add_newline = true
+palette = "catppuccin_mocha"
 
-palette = "normal"
+# Main prompt: Git left, toolchains and status right
+format = """
+[╭─](bold lavender) $os$username[](fg:surface0)$directory[](fg:surface0) $git_branch$git_status$fill$cmd_duration$python$conda$nodejs$java$docker_context$package$rust$cpp$c$jobs$time
+[╰─](bold lavender)$character"""
 
-[palettes.normal]
-arrow = "#89b4fa"        # blue
-os = "#89b4fa"
-os_admin = "#f38ba8"
-directory = "#89b4fa"
-time = "#94e2d5"
-duration = "#f38ba8"
-text_color = "#cdd6f4"
-text_light = "#6c7086"
-git = "#f1502f"          # git orange (lebih khas dari mocha)
-git_status = "#f9e2af"
-node = "#68a063"         # nodejs green asli
-python = "#ffd43b"       # python yellow (logo)
-conda = "#43b02a"        # conda green
-java = "#f89820"         # java orange
-rust = "#dea584"         # rust copper
-clang = "#5bc0eb"        # C/C++ modern blue
-shell = "#89dceb"
-package = "#cba6f7"
-docker = "#0db7ed"
-dark = "#1e1e2e"
+# Color palettes
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
 
-[username]
-style_user = 'bold os'
-style_root = 'bold os_admin'
-format = '[  $user](fg:$style) '
-disabled = false
-show_always = true
+# Dracula
+[palettes.dracula]
+rosewater = "#f8f8f2"
+flamingo = "#ff79c6"
+pink = "#ff79c6"
+mauve = "#bd93f9"
+red = "#ff5555"
+maroon = "#ff6e6e"
+peach = "#ffb86c"
+yellow = "#f1fa8c"
+green = "#50fa7b"
+teal = "#8be9fd"
+sky = "#8be9fd"
+sapphire = "#8be9fd"
+blue = "#8be9fd"
+lavender = "#bd93f9"
+text = "#f8f8f2"
+subtext1 = "#e6e6e0"
+subtext0 = "#c9c9c2"
+overlay2 = "#6272a4"
+overlay1 = "#51546c"
+overlay0 = "#44475a"
+surface2 = "#44475a"
+surface1 = "#343746"
+surface0 = "#303341"
+base = "#282a36"
+mantle = "#21222c"
+crust = "#191a21"
 
-[os]
-format = "on [($name)]($style) "
-style = "bold blue"
-disabled = true
+# Tokyo Night
+[palettes.tokyo_night]
+rosewater = "#f7768e"
+flamingo = "#ff9e64"
+pink = "#bb9af7"
+mauve = "#bb9af7"
+red = "#f7768e"
+maroon = "#db4b4b"
+peach = "#ff9e64"
+yellow = "#e0af68"
+green = "#9ece6a"
+teal = "#73daca"
+sky = "#7dcfff"
+sapphire = "#7aa2f7"
+blue = "#7aa2f7"
+lavender = "#c0caf5"
+text = "#c0caf5"
+subtext1 = "#a9b1d6"
+subtext0 = "#9aa5ce"
+overlay2 = "#565f89"
+overlay1 = "#414868"
+overlay0 = "#292e42"
+surface2 = "#414868"
+surface1 = "#292e42"
+surface0 = "#24283b"
+base = "#1a1b26"
+mantle = "#16161e"
+crust = "#13131a"
 
-[os.symbols]
-Alpine = " "
-Arch = " "
-Debian = " "
-EndeavourOS = " "
-Fedora = " "
-Linux = " "
-Macos = " "
-Manjaro = " "
-Mint = " "
-NixOS = " "
-openSUSE = " "
-Pop = " "
-SUSE = " "
-Ubuntu = " "
-Windows = " "
+# Nord
+[palettes.nord]
+rosewater = "#d8dee9"
+flamingo = "#d08770"
+pink = "#b48ead"
+mauve = "#b48ead"
+red = "#bf616a"
+maroon = "#bf616a"
+peach = "#d08770"
+yellow = "#ebcb8b"
+green = "#a3be8c"
+teal = "#8fbcbb"
+sky = "#88c0d0"
+sapphire = "#81a1c1"
+blue = "#5e81ac"
+lavender = "#b48ead"
+text = "#eceff4"
+subtext1 = "#e5e9f0"
+subtext0 = "#d8dee9"
+overlay2 = "#4c566a"
+overlay1 = "#434c5e"
+overlay0 = "#3b4252"
+surface2 = "#4c566a"
+surface1 = "#434c5e"
+surface0 = "#3b4252"
+base = "#2e3440"
+mantle = "#272c36"
+crust = "#242933"
 
-[character]
-success_symbol = "[󰍟](fg:arrow)"
-error_symbol = "[󰍟](fg:red)"
+# Gruvbox Dark
+[palettes.gruvbox_dark]
+rosewater = "#ebdbb2"
+flamingo = "#fe8019"
+pink = "#d3869b"
+mauve = "#d3869b"
+red = "#fb4934"
+maroon = "#cc241d"
+peach = "#fe8019"
+yellow = "#fabd2f"
+green = "#b8bb26"
+teal = "#8ec07c"
+sky = "#8ec07c"
+sapphire = "#83a598"
+blue = "#83a598"
+lavender = "#d3869b"
+text = "#ebdbb2"
+subtext1 = "#d5c4a1"
+subtext0 = "#bdae93"
+overlay2 = "#a89984"
+overlay1 = "#928374"
+overlay0 = "#7c6f64"
+surface2 = "#504945"
+surface1 = "#3c3836"
+surface0 = "#3c3836"
+base = "#282828"
+mantle = "#1d2021"
+crust = "#1d2021"
 
-[directory]
-format = "[$path](bold $style)[$read_only]($read_only_style) "
-truncation_length = 2
-style = "fg:directory"
-read_only_style = "fg:directory"
-before_repo_root_style = "fg:directory"
-truncation_symbol = "…/"
-truncate_to_repo = true
-read_only ="  "
-
-[time]
-disabled = false
-format = "[󱑈 $time]($style) "
-time_format = "%H:%M"
-style = "bold fg:time"
-
-
-
-[cmd_duration]
-disabled = false
-format = "took [ $duration]($style) "
-style = "bold fg:duration"
-min_time = 500
-
-[git_branch]
-format = "via [$symbol$branch]($style) "
-style = "bold fg:git"
-symbol = " "
-
-[git_status]
-format = '[ $all_status$ahead_behind ]($style)'
-style = "fg:text_color bg:git"
-disabled = true
-
-[docker_context]
-disabled=false
-symbol = " "
-
-[package]
-disabled=false
-
+# Fill space between prompt groups
 [fill]
 symbol = " "
 
-[nodejs]
-format = "[](fg:node)[ $symbol$version ](bg:node fg:dark)[](fg:node)"
-style = ""
-symbol = " "
-version_format = "${raw}"
+# Operating system
+[os]
+disabled = false
+format = "[$symbol](bold blue) "
+
+[os.symbols]
+Artix = " "
+Arch = " "
+Debian = " "
+Ubuntu = " "
+Windows = " "
+Macos = " "
+Linux = " "
+
+# Username
+[username]
+show_always = true
+style_user = "bold blue"
+style_root = "bold red"
+format = "[$user]($style) "
+
+# Current directory
+[directory]
+format = "[ $path](bg:surface0 fg:text)[$read_only](bg:surface0 fg:red)"
+truncation_length = 3
+truncate_to_repo = true
+read_only = " "
+
+# Git branch
+[git_branch]
+format = "[](fg:mauve)[ $branch](bg:mauve fg:base)[](fg:mauve) "
+
+# Git status
+[git_status]
+disabled = false
+format = "[](fg:red)[$all_status$ahead_behind](bg:red fg:base)[](fg:red) "
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# C and C++
+[c]
+format = "[](fg:sky)[ $version](bg:sky fg:base)[](fg:sky) "
+detect_extensions = ["c", "h"]
+disabled = false
+
+[cpp]
+format = "[](fg:sapphire)[ $version](bg:sapphire fg:base)[](fg:sapphire) "
+detect_extensions = ["cpp", "hpp", "cc", "cxx", "c++", "hh", "hxx", "h++", "tcc"]
+disabled = false
+
+# Other language modules
+[rust]
+format = "[](fg:peach)[ $version](bg:peach fg:base)[](fg:peach) "
 disabled = false
 
 [python]
-format = "[](fg:python)[ ${symbol}${pyenv_prefix}(${version})(($virtualenv)) ](bg:python fg:dark)[](fg:python)"
-symbol = " "
-version_format = "${raw}"
-style = ""
+format = "[](fg:yellow)[ ${pyenv_prefix}${version}( \\($virtualenv\\))](bg:yellow fg:base)[](fg:yellow) "
 disabled = false
 
 [conda]
-format = "[](fg:conda)[ $symbol$environment ](bg:conda fg:dark)[](fg:conda)"
-style = ""
+format = "[](fg:green)[ $environment](bg:green fg:base)[](fg:green) "
 ignore_base = false
 disabled = false
-symbol = " "
+
+[nodejs]
+format = "[](fg:green)[ $version](bg:green fg:base)[](fg:green) "
+disabled = false
 
 [java]
-format = "[](fg:java)[ $symbol$version ](bg:java fg:dark)[](fg:java)"
-style = ""
-version_format = "${raw}"
-symbol = " "
+format = "[](fg:maroon)[ $version](bg:maroon fg:base)[](fg:maroon) "
 disabled = false
 
-[c]
-format = "[](fg:clang)[ $symbol($version(-$name)) ](bg:clang fg:dark)[](fg:clang)"
-style = ""
-symbol = " "
-version_format = "${raw}"
+[package]
+format = "[](fg:pink)[󰏗 $version](bg:pink fg:base)[](fg:pink) "
 disabled = false
 
-[rust]
-format = "[](fg:rust)[ $symbol$version ](bg:rust fg:dark)[](fg:rust)"
-style = ""
-symbol = " "
-version_format = "${raw}"
+[docker_context]
+format = "[](fg:teal)[ $context](bg:teal fg:base)[](fg:teal) "
 disabled = false
+
+# Command duration
+[cmd_duration]
+min_time = 500
+show_milliseconds = true
+format = "[](fg:peach)[ $duration](bg:peach fg:base)[](fg:peach) "
+
+# Local time
+[time]
+disabled = false
+time_format = "%H:%M"
+format = "[](fg:lavender)[󱑈 $time](bg:lavender fg:base)[](fg:lavender)"
+
+# Background jobs
+[jobs]
+symbol = "✦"
+number_threshold = 1
+symbol_threshold = 1
+format = "[](fg:teal)[$symbol $number](bg:teal fg:base)[](fg:teal) "
+
+# Command exit status
+[character]
+success_symbol = "[󰍟 ](bold green)"
+error_symbol = "[󰍟 ](bold red)"
