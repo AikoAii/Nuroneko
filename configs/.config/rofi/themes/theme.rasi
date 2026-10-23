@@ -1,15 +1,24 @@
-// Material You × Catppuccin //
+// Catppuccin Mocha — Nuroneko Rofi palette
+// Palette: https://github.com/catppuccin/catppuccin
 
 * {
-    main-bg:            #11111be6;
-    main-fg:            #cdd6f4ff;
+    // Base colours
+    main-bg:            #1e1e2eef; // Base with a little transparency
+    main-fg:            #cdd6f4ff; // Text
+    main-br:            #cdd6f42e; // Soft border
+    main-ex:            #cba6f7ff; // Mauve accent
 
-    main-br:            #45475acc;
+    // Selected application row
+    select-bg:          #cba6f72b;
+    select-fg:          #cba6f7ff;
+    select-br:          #cba6f773;
 
-    main-ex:            #f5e0dcff;
-
-    select-bg:          #b4befeff;
-    select-fg:          #11111bff;
+    // Search field and sidebar buttons
+    surface:            #313244a8; // Surface 0
+    glass:              #181825e8; // Mantle
+    dim:                #a6adc8ff; // Subtext 0
+    on-accent:          #1e1e2eff; // Dark text on accent
+    urgent:             #f38ba8ff; // Red
 
     separatorcolor:     transparent;
     border-color:       transparent;
