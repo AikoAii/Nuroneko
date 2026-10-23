@@ -1,122 +1,101 @@
-// General Config
+
+/* Nuroneko — Emoji Picker */
+
 configuration {
     show-icons: false;
-    font:       "JetBrainsMono Nerd Font 10";
+    font:       "Noto Color Emoji 14";
 }
 
-@import "theme"
+@theme "theme"
 
-// Main Window
 window {
-    height:           24em;
-    width:            38em;
+    width:            32em;
     transparency:     "real";
-    background-color: @main-bg;
-    enabled:          true;
-    cursor:           "default";
-    spacing:          0em;
-    padding:          0em;
-    border:           1px;
-    border-radius:    20px;
-    border-color:     @main-br;
     fullscreen:       false;
+    border:           1px;
+    border-radius:    18px;
+    border-color:     @main-br;
+    background-color: @main-bg;
+    padding:          0em;
 }
 
-// Content Container
 mainbox {
-    enabled:          true;
     orientation:      vertical;
-    spacing:          0.8em;
-    padding:          1.2em;
     children:         [ "inputbar", "listview" ];
+    spacing:          0.5em;
+    padding:          0.8em;
     background-color: transparent;
 }
 
-// Search Bar Box
 inputbar {
-    enabled:          true;
     children:         [ prompt, entry ];
-    spacing:          0.5em;
-    padding:          0.25em;
-    cursor:           pointer;
-    background-color: @main-bg;
-    text-color:       @main-fg;
+    spacing:          0.2em;
+    padding:          0.25em 0.55em;
     border:           1px;
-    border-radius:    14px;
+    border-radius:    12px;
     border-color:     @main-br;
+    background-color: @surface;
+    text-color:       @main-fg;
 }
 
-// Search Badge/Label
 prompt {
     enabled:          true;
-    padding:          0.6em 0.9em;
-    text-align:       center;
-    cursor:           default;
-    text-color:       @select-fg;
-    background-color: @select-bg;
-    border-radius:    11px;
-}
-
-// Text Input Field
-entry {
-    enabled:          true;
-    expand:           true;
-    padding:          0.6em 0.7em;
-    cursor:           text;
+    str:              "🙂";
+    font:             "Noto Color Emoji 12";
+    padding:          0.3em 0.4em;
+    vertical-align:   0.5;
     background-color: transparent;
-    text-color:       @main-fg;
-    placeholder:      "Search emoji...";
-    placeholder-color: @main-fg;
+    text-color:       @main-ex;
 }
 
-// Emoji Grid View
+entry {
+    font:              "JetBrainsMono Nerd Font 10";
+    placeholder:       "Search emoji…";
+    placeholder-color: @dim;
+    padding:           0.3em;
+    vertical-align:    0.5;
+    background-color:  transparent;
+    text-color:        @main-fg;
+}
+
 listview {
-    enabled:          true;
-    columns:          9;
+    columns:          8;
     lines:            5;
-    spacing:          7px;
-    padding:          0.3em;
+    spacing:          4px;
+    flow:             horizontal;
+    layout:           vertical;
+    padding:          0.1em 0em;
     cycle:            true;
     dynamic:          true;
-    layout:           vertical;
-    flow:             horizontal;
-    reverse:          false;
+    scrollbar:        false;
     fixed-height:     true;
     fixed-columns:    true;
-    cursor:           "default";
     background-color: transparent;
     text-color:       @main-fg;
 }
 
-// Emoji Grid Item
 element {
-    enabled:          true;
-    padding:          0.5em 0em;
-    cursor:           pointer;
-    border-radius:    13px;
+    children:         [ element-text ];
+    padding:          0.25em 0.1em;
+    border:           1px;
+    border-radius:    9px;
+    border-color:     transparent;
     background-color: transparent;
     text-color:       @main-fg;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
 }
 
-// Active/Selected Emoji Item
 element selected.normal {
+    border-color:     @select-br;
     background-color: @select-bg;
     text-color:       @select-fg;
-    border-radius:    13px;
 }
 
-// Hidden Icon Placeholder
-element-icon {
-    size:             0;
-    background-color: transparent;
-}
-
-// Emoji Icon Text Display
 element-text {
-    cursor:           pointer;
-    vertical-align:   0.5;
+    font:             "Noto Color Emoji 14";
     horizontal-align: 0.5;
-    font:             "FiraCode Nerd Font 20";
+    vertical-align:   0.5;
     background-color: transparent;
     text-color:       inherit;
 }
