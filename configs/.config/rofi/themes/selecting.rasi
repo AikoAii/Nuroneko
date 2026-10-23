@@ -1,96 +1,80 @@
-// Configuration
+// Nuroneko Rofi — Wallpaper selector
 configuration {
-    modi:               "drun";
-    show-icons:         true;
+    modi:                "drun";
+    show-icons:          true;
     drun-display-format: "{name}";
-    font:               "JetBrainsMono NF Bold 11";
+    font:                "JetBrainsMono Nerd Font 10";
+    icon-theme:          "Papirus";
 }
 
-@theme "theme"
+@import "theme"
+@import "base"
 
-// Window
 window {
-    enabled:            true;
-    fullscreen:         false;
-    width:              80%;
-    height:             16em;
-    transparency:       "real";
-    cursor:             "default";
-    spacing:            0px;
-    padding:            0px;
-    border:             1px;
-    border-radius:      18px;
-    border-color:       @main-br;
-    background-color:   @main-bg;
+// set position
+    location:         center;
+    anchor:           center;
+    y-offset:         -1.2em;
+    width:            82%;
+    transparency:     "real";
+    fullscreen:       false;
+    border:           1px;
+    border-radius:    20px;
+    border-color:     @main-br;
+    background-color: @main-bg;
+    padding:          0em;
 }
 
-// Main Box
 mainbox {
-    enabled:            true;
-    spacing:            0px;
-    padding:            0px;
-    children:           [ "listview" ];
-    background-color:   transparent;
+    orientation:      vertical;
+    children:         [ "listview" ];
+    spacing:          0em;
+    padding:          0.25em;
+    background-color: transparent;
 }
 
-// Wallpaper Grid
 listview {
-    enabled:            true;
-    columns:            5;
-    lines:              1;
-    spacing:            6px;
-    padding:            6px;
-    cycle:              true;
-    dynamic:            true;
-    scrollbar:          false;
-    layout:             vertical;
-    reverse:            false;
-    fixed-height:       true;
-    fixed-columns:      true;
-    cursor:             "default";
-    background-color:   transparent;
-    text-color:         @main-fg;
+    columns:          5;
+    lines:            1;
+    spacing:          8px;
+    padding:          0px;
+    layout:           vertical;
+    cycle:            true;
+    dynamic:          true;
+    scrollbar:        false;
+    fixed-height:     false;
+    fixed-columns:    true;
+    background-color: transparent;
+    text-color:       @main-fg;
 }
 
-// Wallpaper Item
 element {
-    enabled:            true;
-    orientation:        vertical;
-    spacing:            0px;
-    padding:            2px;
-    border:             2px;
-    border-radius:      12px;
-    border-color:       transparent;
-    cursor:             pointer;
-    background-color:   transparent;
-    text-color:         @main-fg;
+    orientation:      vertical;
+    padding:          2px;
+    border:           1px;
+    border-radius:    12px;
+    border-color:     transparent;
+    background-color: transparent;
+    text-color:       @main-fg;
 }
 
-// Selected State
-element selected.normal {
-    background-color:   transparent;
-    text-color:         @select-fg;
-    border-color:       @select-bg;
-    border-radius:      12px;
+element selected.normal,
+element selected.active {
+    border-color:     @select-br;
+    background-color: @select-bg;
+    text-color:       @select-fg;
 }
 
-// Thumbnail
 element-icon {
-    size:               280px;
-    cursor:             inherit;
-    border-radius:      9px;
-    background-color:   transparent;
-    horizontal-align:   0.5;
+    size:             280px;
+    //squared:          false;
+    border-radius:    10px;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+    background-color: transparent;
+    text-color:       inherit;
 }
 
-// Hide Filename Text
 element-text {
-    enabled:            false;
-}
-
-// Responsive Media Query
-@media(max-aspect-ratio: 1.8) {
-    element {
-        orientation:    vertical;
-    }
+    enabled:          false;
 }
