@@ -1,116 +1,124 @@
-// General Config
+// Nuroneko Rofi — Keyboard shortcuts
 configuration {
     modi:       "drun";
     show-icons: false;
     font:       "JetBrainsMono Nerd Font 10";
 }
 
-@theme "theme"
+@import "theme"
+@import "base"
 
-// Main Window
 window {
-    height:           30em;
-    width:            48em;
+    location:         center;
+    anchor:           center;
+    width:            42em;
     transparency:     "real";
     fullscreen:       false;
-    enabled:          true;
-    cursor:           "default";
-    spacing:          0em;
-    padding:          0em;
     border:           1px;
-    border-radius:    20px;
+    border-radius:    18px;
     border-color:     @main-br;
     background-color: @main-bg;
+    padding:          0em;
 }
 
-// Content Container
 mainbox {
-    enabled:          true;
     orientation:      vertical;
-    spacing:          1em;
-    padding:          1.3em;
     children:         [ "inputbar", "listview" ];
+    spacing:          0.65em;
+    padding:          1em;
     background-color: transparent;
 }
 
-// Search Bar Box
 inputbar {
-    enabled:          true;
     children:         [ prompt, entry ];
-    spacing:          0.5em;
-    padding:          0.25em;
-    cursor:           pointer;
-    background-color: @main-bg;
-    text-color:       @main-fg;
+    spacing:          0.3em;
+    padding:          0.3em 0.6em;
     border:           1px;
-    border-radius:    15px;
+    border-radius:    12px;
     border-color:     @main-br;
+    background-color: @surface;
+    text-color:       @main-fg;
 }
 
-// Search Badge/Label
 prompt {
     enabled:          true;
-    padding:          0.6em 0.9em;
-    text-align:       center;
-    cursor:           default;
-    text-color:       @select-fg;
-    background-color: @select-bg;
-    border-radius:    11px;
-}
-
-// Text Input Field
-entry {
-    enabled:          true;
-    expand:           true;
-    padding:          0.6em 0.7em;
-    cursor:           text;
+    str:              "󰌌";
+    padding:          0.4em 0.5em;
+    vertical-align:   0.5;
     background-color: transparent;
-    text-color:       @main-fg;
-    placeholder:      "Search shortcuts...";
-    placeholder-color: @main-fg;
+    text-color:       @main-ex;
 }
 
-// Keybind List View
+entry {
+    placeholder:       "Search shortcuts…";
+    placeholder-color: @dim;
+    padding:           0.4em;
+    vertical-align:    0.5;
+    background-color:  transparent;
+    text-color:        @main-fg;
+}
+
 listview {
-    enabled:          true;
-    spacing:          5px;
-    padding:          0.2em 0em 0em 0em;
     columns:          1;
     lines:            8;
+    spacing:          4px;
+    padding:          0em;
+    layout:           vertical;
     cycle:            true;
     dynamic:          true;
     scrollbar:        false;
-    layout:           vertical;
-    fixed-height:     true;
+    fixed-height:     false;
     fixed-columns:    true;
-    cursor:           "default";
     background-color: transparent;
     text-color:       @main-fg;
 }
 
-// List Item
 element {
-    enabled:          true;
-    spacing:          1em;
-    padding:          0.65em 0.9em;
-    cursor:           pointer;
-    border-radius:    13px;
+    spacing:          0.8em;
+    padding:          0.55em 0.8em;
+    border:           1px;
+    border-radius:    10px;
+    border-color:     transparent;
     background-color: transparent;
     text-color:       @main-fg;
 }
 
-// Active/Selected Item
-element selected.normal {
+element alternate.normal {
+    background-color: @glass;
+}
+
+element normal.active {
+    text-color:       @main-ex;
+}
+
+element normal.urgent {
+    text-color:       @urgent;
+}
+
+element selected.normal,
+element selected.active {
+    border-color:     @select-br;
     background-color: @select-bg;
     text-color:       @select-fg;
-    border-radius:    13px;
 }
 
-// Item Text Content
+element selected.urgent {
+    border-color:     @urgent;
+    background-color: @select-bg;
+    text-color:       @urgent;
+}
+
+element-icon {
+    size:             1.6em;
+    vertical-align:   0.5;
+    background-color: transparent;
+    text-color:       inherit;
+}
+
 element-text {
     vertical-align:   0.5;
     horizontal-align: 0.0;
-    cursor:           inherit;
+    highlight:        bold;
     background-color: transparent;
     text-color:       inherit;
 }
