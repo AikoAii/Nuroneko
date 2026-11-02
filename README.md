@@ -1,176 +1,55 @@
 # Nuroneko
 
-Nuroneko is a modular Hyprland environment for people who want a complete Arch Linux or Artix Linux desktop without manually assembling and maintaining dozens of separate configurations.
+**A modular, reproducible Linux desktop configuration.**
 
-It provides a cohesive desktop workflow around Hyprland, including application launching, notifications, clipboard management, OCR utilities, screenshots, scratchpads, power management, shell tooling, SDDM theme integration, and desktop integration.
+> Nuroneko v2 is under active development. The v1.1.1 release is the
+> last stable v1 snapshot.
 
-<p align="center">
-  <img src=".meta/assets/logo.svg" width="70%" alt="Nuroneko">
-</p>
+## Goals
 
-<p align="center">
-  <a href="https://github.com/AikoAii/nuroneko/commits">
-    <img src="https://img.shields.io/github/last-commit/AikoAii/nuroneko?style=for-the-badge&logo=git&label=Last%20Commit" alt="Last Commit" />
-  </a>
+- Modular dotfiles organized by application.
+- Native Lua configuration for Hyprland.
+- Portable configuration without machine-specific paths.
+- Reusable user scripts separated from installer tooling.
+- Explicit package and init-system handling.
+- Safe installation with backups and validation.
+- Clear documentation and predictable versioning.
 
-  <a href="https://github.com/AikoAii/nuroneko/stargazers">
-    <img src="https://img.shields.io/github/stars/AikoAii/nuroneko?style=for-the-badge&logo=github" alt="GitHub Stars" />
-  </a>
+## Repository layout
 
-  <a href="./LICENSE">
-    <img src="https://img.shields.io/github/license/AikoAii/nuroneko?style=for-the-badge" alt="License" />
-  </a>
-</p>
+| Path | Purpose |
+|---|---|
+| `dotfiles/` | GNU Stow packages |
+| `bin/` | User-facing executables |
+| `scripts/` | Development tools and shared helpers |
+| `installer/` | Installation and deployment |
+| `packages/` | Distribution-specific package manifests |
+| `assets/` | Wallpapers, icons, fonts, cursors, and themes |
+| `docs/` | Architecture and documentation |
 
-<p align="center">
-  <a href="#why-nuroneko">Why Nuroneko</a> •
-  <a href="#what-it-includes">What It Includes</a> •
-  <a href="#preview">Preview</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#documentation">Documentation</a>
-</p>
+## Dotfile deployment
 
----
+Dotfile packages are designed around GNU Stow.
 
-## Why Nuroneko
+For example, the `hypr` package contains:
 
-Many Hyprland setups focus primarily on appearance.
+`dotfiles/hypr/.config/hypr/`
 
-While visually impressive, they often require users to manually maintain independent configurations for launchers, notifications, screenshots, clipboard utilities, shell environments, status bars, and supporting scripts.
+It maps to:
 
-Nuroneko approaches the desktop differently. Rather than treating each component as a separate system, it provides a curated environment where common workflows are integrated and designed to work together consistently across multiple init systems.
+`~/.config/hypr/`
 
----
+when stowed with the home directory as the target.
 
-## What It Includes
+## Development status
 
-Nuroneko provides a complete workflow around Hyprland, including:
-
-* Application launching and desktop actions
-* Clipboard history and clipboard utilities
-* OCR and screenshot workflows
-* Notification center and on-screen displays
-* Scratchpad workflows and power profile management
-* Wallpaper and appearance integration
-* SDDM Display Manager integration (**NuroPix** theme)
-* Terminal and shell tooling (Fish, Neovim, Starship, Yazi, Btop)
-
-The project also includes an installation framework featuring:
-
-* **Interactive Setup Wizard:** Menu engine using `whiptail`, `dialog`, or clean Bash CLI fallback
-* **Multi-Init Integration:** Safe service management across `systemd`, `OpenRC`, and `dinit`
-* **Safe Backups & Simulation:** Non-destructive deployment with timestamped backups & `--dry-run` simulation mode
-* **Diagnostics Tool:** Standalone health & dependency checker (`./install.sh doctor`)
-
----
-
-## Preview
-
-<table align="center">
-  <tr>
-    <td colspan="3">
-      <a href="https://youtu.be/w_LmZ3DnkMw?si=jRVfj1dQAXsSO_lg">
-        <img src=".meta/assets/video-preview.png" width="100%" alt="Nuroneko Showcase">
-      </a>
-    </td>
-  </tr>
-
-  <tr>
-    <td>
-      <img src=".meta/assets/rofi.png" alt="Launcher">
-    </td>
-    <td>
-      <img src=".meta/assets/wallpaper.png" alt="Wallpaper">
-    </td>
-    <td>
-      <img src=".meta/assets/keybinds.png" alt="Keybindings">
-    </td>
-  </tr>
-</table>
-
----
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/AikoAii/Nuroneko.git ~/.config/Nuroneko
-cd ~/.config/Nuroneko
-```
-
-Standard installation (Interactive Wizard):
-
-```bash
-./install.sh
-```
-
-Simulation mode (Read-only Dry-Run):
-
-```bash
-./install.sh --dry-run
-```
-
-Development installation (Symlinks):
-
-```bash
-./install.sh --symlink
-```
-
-System diagnostics & health check:
-
-```bash
-./install.sh doctor
-```
-
-> [!NOTE]
-> Existing configurations are automatically backed up before deployment to `~/.local/share/nuroneko/backups/`.
-
----
-
-## Documentation
-
-Additional documentation is available for:
-
-- [Installation Guide](./docs/installation.md)
-- [Package Reference](./docs/packages.md)
-- [Shell Aliases](./docs/alias.md)
-- [Shell Functions](./docs/functions.md)
-- [Troubleshooting](./docs/troubleshooting.md)
-
-Quick keybinding reference inside desktop: `SUPER + /`
-
----
-
-## Contributing
-
-Bug reports, documentation improvements, workflow suggestions, and pull requests are welcome.
-
-When contributing, please ensure that changes remain consistent with the project's goals of maintainability, modularity, and cross-init compatibility.
-
----
-
-## Credits
-
-Nuroneko builds upon the work of many open-source projects and communities that make modern Linux desktops possible.
-
-<!--Special thanks to the maintainers, contributors, and users of the software that forms the foundation of this project.-->
-
----
-
-
-## Support Me
-
-<p align="left">
-  <a href="https://trakteer.id/aikoaii" target="_blank">
-    <img src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png" height="40" alt="Trakteer"/>
-  </a>
-
-  <a href="https://ko-fi.com/aikoai" target="_blank">
-    <img src="https://ko-fi.com/img/githubbutton_sm.svg" height="40" alt="Ko-fi"/>
-  </a>
-</p>
+- [ ] Define supported distributions and init systems.
+- [ ] Implement native Lua Hyprland configuration.
+- [ ] Add and validate dotfile packages.
+- [ ] Implement installer and rollback.
+- [ ] Add package manifests and dependency checks.
+- [ ] Complete clean-install testing.
 
 ## License
 
-MIT License. See `LICENSE` for details.
+See [LICENSE](LICENSE).

@@ -1,18 +1,31 @@
-# Environment
-.env
-.env.*
-
-# Logs
-*.log
-
-# Temporary
-tmp/
-.cache/
-
-# OS
+# Editor / OS
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+*.rej
 
-# Editors
-.vscode/
-.idea/
+# Secrets
+.env
+.env.*
+!.env.example
+*.secret
+
+# Logs and caches
+*.log
+.cache/
+.cache-*/
+
+# Local backups
+*.bundle
+*.tar
+*.tar.gz
+*.tgz
+
+# Build output
+build/
+dist/
+coverage/
